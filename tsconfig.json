@@ -1,4 +1,8 @@
 {
+  // QUE HACE: Configura el compilador TypeScript para el proyecto Next con tipado estricto y resolución moderna de módulos.
+  // POR QUE SE ELIGIO: Un tsconfig coherente con App Router y aliases centraliza reglas de compilación y mejora mantenibilidad.
+  // COMO FUNCIONA: Define opciones de análisis estático, módulos, paths y archivos incluidos/excluidos para el checker.
+  // APRENDE MAS: https://www.typescriptlang.org/tsconfig
   "compilerOptions": {
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -22,6 +26,10 @@
       "@/*": ["./src/*"]
     }
   },
+  // QUE HACE: Limita los archivos que TypeScript debe analizar para el proyecto.
+  // POR QUE SE ELIGIO: Incluir solo fuentes y tipos generados reduce tiempo de compilación y evita ruido de dependencias externas.
+  // COMO FUNCIONA: Los glob patterns incorporan sources TS/TSX/MTS y tipos generados por Next.
+  // APRENDE MAS: https://www.typescriptlang.org/tsconfig
   "include": [
     "next-env.d.ts",
     "**/*.ts",
@@ -30,5 +38,9 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
+  // QUE HACE: Excluye dependencias instaladas del análisis del compilador.
+  // POR QUE SE ELIGIO: Evita consumo innecesario de memoria y tiempo en artefactos que no forman parte del código fuente.
+  // COMO FUNCIONA: TypeScript omite `node_modules` al resolver el grafo de archivos del proyecto.
+  // APRENDE MAS: https://www.typescriptlang.org/tsconfig
   "exclude": ["node_modules"]
 }

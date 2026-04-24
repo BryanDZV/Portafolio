@@ -1,0 +1,49 @@
+{
+  "hero": {
+    "badge": "Immersive Portfolio v1.0",
+    "title1": "Portfolio",
+    "title2": "Bryan Zavala.",
+    "subtitle": "Full Stack Developer",
+    "stack": "Next.js, React.js, Angular, Node, Sql",
+    "description": "improving every day.",
+    "cta_button": "VIEW PROJECTS"
+  },
+  "about": {
+    "title1": "About",
+    "title2": "Me",
+    "card1_title": "Hi, I'm Bryan Zavala",
+    "card1_description": "Junior Web Developer (DAW degree). During my training, I've learned to build web applications from scratch using technologies like Next.js, Angular, React, Node.js, Express.js, and PostgreSQL. I'm aware that I'm at the beginning of my career and there's still much to learn.",
+    "card2_title": "Base of Operations",
+    "card2_location": "Madrid, Spain",
+    "card3_title": "Core Stack",
+    "card4_title": "Work Philosophy",
+    "card4_description1": "I firmly believe in rapid iteration and continuous learning. Every mistake is a lesson and every project is an opportunity to push my own boundaries.",
+    "card4_description2": "2026 is the year to build without limits."
+  },
+  "projects": {
+    "title1": "Projects",
+    "title2": "2026.",
+    "subtitle": "Swipe to discover the future of development.",
+    "cta": "LET'S TALK.",
+    "cta_subtitle": "Have an idea in mind? Discover how we can build your next big project.",
+    "cta_button": "Start Project"
+  },
+  "footer": {
+    "tagline": "Designing and building digital systems. Transforming coffee and logic into immersive experiences.",
+    "navigation_title": "Navigation",
+    "nav_home": "Home",
+    "nav_projects": "Projects",
+    "nav_about": "About Me",
+    "nav_contact": "Contact",
+    "back_to_top": "Back to top",
+    "copyright_rights": "All rights reserved.",
+    "built_in": "Built in Madrid"
+  },
+  "contact": {
+    "page_title": "Contact",
+    "description": "Tell me about the business objective, technical scope, and project constraints. I'll respond with a clear proposal for architecture and execution.",
+    "email_label": "Send email to Bryan Zavala",
+    "email": "bryan.dweb@gmail.com",
+    "back_link": "Back to Home"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "hero": {
+    "badge": "Portafolio Inmersivo v1.0",
+    "title1": "Portafolio",
+    "title2": "Bryan Zavala.",
+    "subtitle": "Desarrollador Full Stack",
+    "stack": "Next.js, React.js, Angular, Node, Sql",
+    "description": "mejorando cada día.",
+    "cta_button": "VER PROYECTOS"
+  },
+  "about": {
+    "title1": "Sobre",
+    "title2": "Mí",
+    "card1_title": "Hola, soy Bryan Zavala",
+    "card1_description": "Desarrollador Web Junior (titulado en DAW). Durante mi formación he aprendido a construir aplicaciones web desde cero utilizando tecnologías como Next.js, Angular, React, Node.js, Express.js y PostgreSQL. Soy consciente de que estoy al principio de mi carrera y que me queda mucho por aprender.",
+    "card2_title": "Base de Operaciones",
+    "card2_location": "Madrid, España",
+    "card3_title": "Core Stack",
+    "card4_title": "Filosofía de Trabajo",
+    "card4_description1": "Creo firmemente en la iteración rápida y el aprendizaje continuo. Cada error es una lección y cada proyecto es una oportunidad para superar mis propios límites.",
+    "card4_description2": "2026 es el año de construir sin fronteras."
+  },
+  "projects": {
+    "title1": "Proyectos",
+    "title2": "2026.",
+    "subtitle": "Desliza para descubrir el futuro del desarrollo.",
+    "cta": "HABLEMOS.",
+    "cta_subtitle": "¿Tienes una idea en mente? Descubre cómo podemos construir tu próximo gran proyecto.",
+    "cta_button": "Empezar Proyecto"
+  },
+  "footer": {
+    "tagline": "Diseñando y construyendo sistemas digitales. Transformando café y lógica en experiencias inmersivas.",
+    "navigation_title": "Navegación",
+    "nav_home": "Inicio",
+    "nav_projects": "Proyectos",
+    "nav_about": "Sobre Mí",
+    "nav_contact": "Contacto",
+    "back_to_top": "Volver arriba",
+    "copyright_rights": "Todos los derechos reservados.",
+    "built_in": "Construido en Madrid"
+  },
+  "contact": {
+    "page_title": "Contacto",
+    "description": "Cuéntame el objetivo de negocio, alcance técnico y restricciones del proyecto. Te responderé con una propuesta clara de arquitectura y ejecución.",
+    "email_label": "Enviar correo a Bryan Zavala",
+    "email": "bryan.dweb@gmail.com",
+    "back_link": "Volver al inicio"
+  }
+}

@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aprendiendo
 
-## Getting Started
+Este proyecto es mi portfolio personal en su versión 1. Está hecho como parte de mi aprendizaje en DAW y todavía está en proceso de mejora. La idea es ir puliéndolo poco a poco, tanto en diseño como en funcionalidad, mientras sigo practicando con herramientas y buenas bases de desarrollo.
 
-First, run the development server:
+## Qué es este proyecto
+
+Es una web de portfolio con enfoque visual e interactivo, pensada para mostrar mis proyectos y dar una imagen más completa de lo que voy aprendiendo como desarrollador.
+
+Ahora mismo incluye:
+
+- portada principal con contenido en español e inglés
+- secciones de presentación, proyectos y sobre mí
+- diseño responsive
+- animaciones y transiciones suaves
+- tema claro y oscuro
+- panel de administración con login
+- gestión de proyectos desde el panel
+- endpoint API para consultar proyectos
+
+## Tecnologías que estoy usando
+
+- Next.js 16 con App Router
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Framer Motion
+- Supabase para autenticación y datos
+- Drizzle ORM para la base de datos
+- Zustand para estado global
+- Shadcn UI y Radix UI para algunos componentes
+
+## Estructura general
+
+- `src/app/[lang]/(public)` para la parte pública de la web
+- `src/app/[lang]/(admin)` para el panel de administración
+- `src/app/api/projects` para exponer proyectos por API
+- `src/components` para componentes reutilizables
+- `src/db` y `src/lib` para acceso a datos y lógica del servidor
+
+## Funcionalidades actuales
+
+### Parte pública
+
+- página principal con contenido dinámico por idioma
+- secciones de hero, proyectos y presentación
+- enlace a la página de contacto
+- experiencia visual con animaciones y efectos suaves
+
+### Parte de administración
+
+- login para acceder al panel
+- listado de proyectos guardados en la base de datos
+- creación de nuevos proyectos
+- borrado de proyectos
+- opción de edición preparada, aunque todavía no está terminada
+
+### Datos y API
+
+- lectura de proyectos desde la base de datos
+- caché en servidor para mejorar rendimiento
+- contrato JSON para consumir proyectos desde la API
+
+## Estado del proyecto
+
+Esto sigue siendo una primera versión. Hay cosas que ya funcionan bien, pero todavía faltan mejoras de estructura, validación, edición completa del CRUD y más pulido general.
+
+No lo dejo como algo cerrado porque la intención es seguir trabajando encima de esta base.
+
+## Cómo arrancarlo en local
+
+Primero instala dependencias:
+
+```bash
+npm install
+```
+
+Después levanta el servidor de desarrollo:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre la aplicación en:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Scripts disponibles
 
-## Learn More
+- `npm run dev` para desarrollo
+- `npm run build` para generar la build
+- `npm run start` para ejecutar la versión compilada
+- `npm run lint` para revisar el código
 
-To learn more about Next.js, take a look at the following resources:
+## Lo que quiero mejorar más adelante
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- terminar la edición de proyectos
+- mejorar validaciones y mensajes de error
+- seguir afinando diseño y experiencia de usuario
+- reforzar organización interna del código
+- añadir más contenido real al portfolio
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Nota final
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Este portfolio no está presentado como un trabajo terminado. Es una base real de aprendizaje, hecha con ganas de seguir mejorándola y con margen claro de evolución.
