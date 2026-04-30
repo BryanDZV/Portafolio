@@ -1,4 +1,4 @@
-name: CI
+name: CI Pipeline
 
 on:
   push:
@@ -16,9 +16,13 @@ jobs:
       NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
     steps:
+      # 1. Descarga el código (fetch-depth: 0 es crítico para que Gitleaks pueda analizar el historial completo)
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
+      # 2. Instala Node.js y usa la caché nativa para acelerar npm ci
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -26,6 +30,7 @@ jobs:
           cache: "npm"
           cache-dependency-path: package-lock.json
 
+      # 3. Caché agresiva para Next.js (Reduce tiempos de build drásticamente)
       - name: Cache Next.js
         uses: actions/cache@v4
         with:
@@ -34,28 +39,36 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json') }}-
 
+      # 4. Instalación determinista de dependencias (Prohíbe actualizar versiones)
       - name: Install Dependencies
         run: npm ci
 
+      # 5. Análisis Estático: Formateo
       - name: Prettier Format Check
         run: npx prettier --check .
 
+      # 6. Análisis Estático: Tipado
       - name: TypeScript Type Check
         run: npx tsc --noEmit
 
+      # 7. Análisis de Seguridad: Escaneo de secretos filtrados
       - name: Secret Scanning (Gitleaks)
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      # 8. Análisis Estático: Reglas lógicas y de framework
       - name: Linting
         run: npm run lint
 
+      # 9. Pruebas dinámicas
       - name: Unit Tests
         run: npm test
 
+      # 10. Prueba de compilación real
       - name: Production Build
         run: npm run build
 
+      # 11. Auditoría de rendimiento web
       - name: Lighthouse CI
         run: npm run lhci:autorun
