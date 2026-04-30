@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { LanguageSwitcher } from "../LanguageSwitcher";
 
 const mockPush = jest.fn();
-
+//es una prueba
 jest.mock("next/navigation", () => ({
   useRouter: () => ({
     push: mockPush,
