@@ -1,82 +1,39 @@
-# Aprendiendo
+# Portafolio
 
-Este proyecto es mi portfolio personal en su versión 1. Está hecho como parte de mi aprendizaje en DAW y todavía está en proceso de mejora. La idea es ir puliéndolo poco a poco, tanto en diseño como en funcionalidad, mientras sigo practicando con herramientas y buenas bases de desarrollo.
+Aplicación web interactiva que centraliza y expone proyectos de ingeniería de software mediante un sitio público internacionalizado y un panel de administración seguro.
+Resuelve la necesidad de gestionar un perfil profesional dinámico, separando la capa de presentación de la administración y persistencia de datos.
 
-## Qué es este proyecto
+## Arquitectura y Buenas Prácticas
 
-Es una web de portfolio con enfoque visual e interactivo, pensada para mostrar mis proyectos y dar una imagen más completa de lo que voy aprendiendo como desarrollador.
+*   **Adaptabilidad al Stack:** Arquitectura mantenible y escalable que se ciñe a las convenciones nativas de Next.js.
+*   **Gestión de Tipos (TypeScript):** Interfaces y definiciones estáticas aisladas en archivos dedicados, permitiendo un tipado estricto transversal sin acoplarse a la implementación.
+*   **Separación de Responsabilidades (SoC):** La interfaz tiene como único objetivo la presentación visual. La lógica de negocio y manipulación de datos residen exclusivamente en hooks personalizados y controladores.
+*   **Alta Reutilización (DRY):** Lógica y componentes extraídos de forma modular para evitar la duplicidad de código.
+*   **Arquitectura UI (Atomic Design & SRP):** Componentes construidos bajo el Principio de Responsabilidad Única, logrando un ecosistema independiente, predecible y testeable.
+*   **Manejo de Errores Granular:** Control de excepciones aislado por módulo para evitar comprometer la estabilidad global de la aplicación.
 
-Ahora mismo incluye:
+## Stack Tecnológico
 
-- portada principal con contenido en español e inglés
-- secciones de presentación, proyectos y sobre mí
-- diseño responsive
-- animaciones y transiciones suaves
-- tema claro y oscuro
-- panel de administración con login
-- gestión de proyectos desde el panel
-- endpoint API para consultar proyectos
+*   **Core:** Next.js 16.2.3, React 19.2.4, TypeScript 5
+*   **Interfaz de Usuario (UI):** Tailwind CSS 4, Framer Motion, Shadcn UI, Radix UI
+*   **Gestión de Estado:** Zustand
+*   **Base de Datos y Autenticación:** Postgres, Drizzle ORM, Supabase (JS y SSR)
+*   **Internacionalización:** FormatJS Intl Localematcher, Negotiator
+*   **Testing y Calidad:** Jest, Playwright, React Testing Library, ESLint, Lighthouse CI
 
-## Tecnologías que estoy usando
+## Requisitos previos e Instalación local
 
-- Next.js 16 con App Router
-- React 19
-- TypeScript
-- Tailwind CSS 4
-- Framer Motion
-- Supabase para autenticación y datos
-- Drizzle ORM para la base de datos
-- Zustand para estado global
-- Shadcn UI y Radix UI para algunos componentes
+Para ejecutar este proyecto en un entorno local, es necesario contar con Node.js (versión 20 o superior) y disponer de un entorno de base de datos Postgres / Supabase configurado.
 
-## Estructura general
+Debe crearse un archivo `.env` en la raíz del proyecto referenciando las siguientes variables (obtenidas desde los secretos o el panel de configuración):
+*   `DATABASE_URL`
+*   `NEXT_PUBLIC_SUPABASE_URL`
+*   `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 
-- `src/app/[lang]/(public)` para la parte pública de la web
-- `src/app/[lang]/(admin)` para el panel de administración
-- `src/app/api/projects` para exponer proyectos por API
-- `src/components` para componentes reutilizables
-- `src/db` y `src/lib` para acceso a datos y lógica del servidor
-
-## Funcionalidades actuales
-
-### Parte pública
-
-- página principal con contenido dinámico por idioma
-- secciones de hero, proyectos y presentación
-- enlace a la página de contacto
-- experiencia visual con animaciones y efectos suaves
-
-### Parte de administración
-
-- login para acceder al panel
-- listado de proyectos guardados en la base de datos
-- creación de nuevos proyectos
-- borrado de proyectos
-- opción de edición preparada, aunque todavía no está terminada
-
-### Datos y API
-
-- lectura de proyectos desde la base de datos
-- caché en servidor para mejorar rendimiento
-- contrato JSON para consumir proyectos desde la API
-
-## Estado del proyecto
-
-Esto sigue siendo una primera versión. Hay cosas que ya funcionan bien, pero todavía faltan mejoras de estructura, validación, edición completa del CRUD y más pulido general.
-
-No lo dejo como algo cerrado porque la intención es seguir trabajando encima de esta base.
-
-## Cómo arrancarlo en local
-
-Primero instala dependencias:
+Ejecutar los siguientes comandos en la terminal para iniciar el entorno de desarrollo:
 
 ```bash
 npm install
-```
-
-Después levanta el servidor de desarrollo:
-
-```bash
 npm run dev
 ```
 
