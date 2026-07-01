@@ -1,63 +1,54 @@
-# Portafolio
+#  Mi Portafolio Personal
 
-Aplicación web interactiva que centraliza y expone proyectos de ingeniería de software mediante un sitio público internacionalizado y un panel de administración seguro.
-Resuelve la necesidad de gestionar un perfil profesional dinámico, separando la capa de presentación de la administración y persistencia de datos.
+ Este es el repositorio de mi portafolio web. Lo creé con un doble propósito: tener un lugar bonito donde mostrar los proyectos que voy haciendo y, sobre todo, usarlo como excusa para aprender a fondo tecnologías modernas como **Next.js, TypeScript y bases de datos con Supabase**.
 
-## Arquitectura y Buenas Prácticas
+##  ¿De qué trata el proyecto?
 
-*   **Adaptabilidad al Stack:** Arquitectura mantenible y escalable que se ciñe a las convenciones nativas de Next.js.
-*   **Gestión de Tipos (TypeScript):** Interfaces y definiciones estáticas aisladas en archivos dedicados, permitiendo un tipado estricto transversal sin acoplarse a la implementación.
-*   **Separación de Responsabilidades (SoC):** La interfaz tiene como único objetivo la presentación visual. La lógica de negocio y manipulación de datos residen exclusivamente en hooks personalizados y controladores.
-*   **Alta Reutilización (DRY):** Lógica y componentes extraídos de forma modular para evitar la duplicidad de código.
-*   **Arquitectura UI (Atomic Design & SRP):** Componentes construidos bajo el Principio de Responsabilidad Única, logrando un ecosistema independiente, predecible y testeable.
-*   **Manejo de Errores Granular:** Control de excepciones aislado por módulo para evitar comprometer la estabilidad global de la aplicación.
+Básicamente es una web dividida en dos partes:
+1. **La web pública:** Donde los reclutadores y visitantes pueden ver mis proyectos, tecnologías que manejo y contactarme.En proceso para varios idiomas.
+2. **Un panel de administración privado:** Una zona oculta con login donde puedo gestionar (crear, editar, borrar) mis proyectos directamente conectados a una base de datos, sin tener que tocar el código fuente cada vez que quiero subir algo nuevo.
 
-## Stack Tecnológico
+##  Tecnologías que utilicé
 
-*   **Core:** Next.js 16.2.3, React 19.2.4, TypeScript 5
-*   **Interfaz de Usuario (UI):** Tailwind CSS 4, Framer Motion, Shadcn UI, Radix UI
-*   **Gestión de Estado:** Zustand
-*   **Base de Datos y Autenticación:** Postgres, Drizzle ORM, Supabase (JS y SSR)
-*   **Internacionalización:** FormatJS Intl Localematcher, Negotiator
-*   **Testing y Calidad:** Jest, Playwright, React Testing Library, ESLint, Lighthouse CI
+Elegí este stack porque son las herramientas que más se usan hoy en día y quería retarme a entender cómo funcionan juntas en un entorno más cercano a lo real:
 
-## Requisitos previos e Instalación local
+* **Frontend:** Next.js (con App Router), React, Tailwind CSS y Framer Motion (para darle un toque de animaciones fluidas).
+* **Lenguaje:** TypeScript .
+* **Backend y Base de Datos:** Supabase (para la autenticación y guardar datos en Postgres) + Drizzle ORM (para interactuar con la base de datos de forma fácil y tipada).
+* **Estado global:** Zustand (súper ligero y mucho más fácil de entender que Redux).
+* **Testing & Calidad:** Estoy empezando a configurar pruebas con Jest y Playwright, además de usar ESLint para mantener el código limpio.
 
-Para ejecutar este proyecto en un entorno local, es necesario contar con Node.js (versión 20 o superior) y disponer de un entorno de base de datos Postgres / Supabase configurado.
+##  Cómo ejecutarlo en tu PC
 
-Debe crearse un archivo `.env` en la raíz del proyecto referenciando las siguientes variables (obtenidas desde los secretos o el panel de configuración):
-*   `DATABASE_URL`
-*   `NEXT_PUBLIC_SUPABASE_URL`
-*   `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+Si quieres clonar el repo y trastear con el código (o si eres reclutador y quieres ver cómo lo he montado), aquí tienes los pasos:
 
-Ejecutar los siguientes comandos en la terminal para iniciar el entorno de desarrollo:
+1. Necesitas Node.js instalado (versión 20 o superior).
+2. Clona este repositorio y abre la carpeta en tu terminal.
+3. Instala las dependencias:
+   ```bash
+   npm install
+   ```
+4. Configura las variables de entorno. Crea un archivo `.env.local` en la raíz del proyecto y añade tus credenciales (necesitarás un proyecto gratuito en Supabase):
+   ```env
+   DATABASE_URL="tu_url_de_postgres"
+   NEXT_PUBLIC_SUPABASE_URL="tu_url_de_supabase"
+   NEXT_PUBLIC_SUPABASE_ANON_KEY="tu_anon_key"
+   ```
+5. Arranca el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
+6. Abre `http://localhost:3000` en tu navegador y listo.
 
-```bash
-npm install
-npm run dev
-```
+##  Próximos pasos (Lo que quiero mejorar)
 
-Abre la aplicación en:
+Como perfil Junior, Este proyecto es mi "patio de juegos" y poco a poco lo voy puliendo. Mi lista de tareas incluye:
 
-```bash
-http://localhost:3000
-```
+- [ ] Terminar algunas validaciones visuales en el formulario de edición de proyectos.
+- [ ] Aumentar poco a poco la cobertura de testing (unitario y E2E).
+- [ ] Refactorizar algunos componentes para que el código quede aún más limpio.
+- [ ] Seguir mejorando el rendimiento basándome en lo que me dice Lighthouse.
 
-## Scripts disponibles
+---
+¡Gracias por pasarte a mirar mi código! Cualquier feedback o sugerencia de mejora es súper bien recibida.
 
-- `npm run dev` para desarrollo
-- `npm run build` para generar la build
-- `npm run start` para ejecutar la versión compilada
-- `npm run lint` para revisar el código
-
-## Lo que quiero mejorar más adelante
-
-- terminar la edición de proyectos
-- mejorar validaciones y mensajes de error
-- seguir afinando diseño y experiencia de usuario
-- reforzar organización interna del código
-- añadir más contenido real al portfolio
-
-## Nota final
-
-Este portfolio no está presentado como un trabajo terminado. Es una base real de aprendizaje, hecha con ganas de seguir mejorándola y con margen claro de evolución.
