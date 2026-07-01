@@ -107,10 +107,10 @@ export function ProjectsSection({
         <div className="w-full flex-1 min-h-0 flex flex-col relative z-30 pt-2 md:pt-4 pb-4">
           <m.div
             style={{ x: shouldReduceMotion ? "0%" : x }}
-            className="flex w-max h-full items-stretch gap-12 md:gap-16 lg:gap-20 px-[10vw]"
+            className="flex w-max h-full items-start gap-12 md:gap-16 lg:gap-20 px-[10vw]"
           >
             {projects.length === 0 ? (
-              <div className="flex h-full w-[600px] items-center justify-center rounded-2xl border border-dashed border-border bg-card/60">
+              <div className="flex h-[500px] md:h-[580px] lg:h-[620px] w-[600px] items-center justify-center rounded-2xl border border-dashed border-border bg-card/60">
                 <p className="text-base font-mono text-muted-foreground">
                   Esperando datos...
                 </p>
@@ -120,7 +120,7 @@ export function ProjectsSection({
                 {projects.map((project) => (
                   <div
                     key={project.id}
-                    className="w-[480px] md:w-[600px] h-full flex flex-col shrink-0 pointer-events-auto"
+                    className="w-[480px] md:w-[600px] h-[500px] md:h-[580px] lg:h-[620px] flex flex-col shrink-0 pointer-events-auto"
                   >
                     <ProjectCard
                       title={project.title}
@@ -134,7 +134,7 @@ export function ProjectsSection({
                 ))}
 
                 {/* Elemento final para cerrar el scroll */}
-                <div className="w-[100dvw] flex items-center justify-center h-full pointer-events-auto px-[10vw]">
+                <div className="w-[100dvw] flex items-center justify-center h-[500px] md:h-[580px] lg:h-[620px] pointer-events-auto px-[10vw]">
                   <FinalCTA dictionary={dictionary} lang={lang ?? "es"} />
                 </div>
               </>

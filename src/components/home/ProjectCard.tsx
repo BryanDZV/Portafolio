@@ -135,18 +135,18 @@ const ProjectCardComponent = ({
 
         <div
           style={{ transform: "translateZ(80px)" }}
-          className="w-full mt-3 md:mt-4 flex-1 min-h-[140px] md:min-h-[180px] relative shrink-0"
+          className="w-full mt-3 md:mt-4 relative aspect-[16/10] md:aspect-[16/9] max-h-[220px] md:max-h-[300px] shrink-0 overflow-hidden rounded-xl"
         >
           {imageUrl ? (
             <Image
               src={imageUrl}
               alt={title}
               fill
-              sizes="(max-width: 768px) 100vw, 460px"
-              className="w-full h-full object-cover rounded-xl shadow-lg border border-black/5 dark:border-border"
+              sizes="(max-width: 768px) 92vw, (max-width: 1280px) 460px, 520px"
+              className="object-cover shadow-lg border border-black/5 dark:border-border"
             />
           ) : (
-            <div className="w-full h-full bg-secondary/50 rounded-xl flex items-center justify-center border border-border">
+            <div className="w-full h-full bg-secondary/50 flex items-center justify-center border border-border rounded-xl">
               <span className="text-muted-foreground font-mono text-sm">
                 Sin imagen
               </span>
