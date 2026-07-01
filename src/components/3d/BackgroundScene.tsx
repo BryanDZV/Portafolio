@@ -55,10 +55,6 @@ export function BackgroundScene() {
         <div className="h-full w-full opacity-30 bg-[radial-gradient(circle_at_center,var(--primary),transparent_70%)]" />
       )}
 
-      {/* 4. CAPA DE CRISTAL DINÁMICA */}
-      {/* QUE HACE: Aplica un desenfoque y opacidad variable dependiendo del tema activo. */}
-      {/* POR QUE SE ELIGIO: Resuelve el problema de contraste de la nebulosa 3D (que tiene glow y adición física). En modo claro (por defecto) hace de cristal esmerilado denso (85% opacidad y mucho blur) para que el texto oscuro resalte. En modo oscuro (clase 'dark:') se vuelve un velo sutil (20% opacidad y poco blur) dejando ver la nebulosa con toda su fuerza. */}
-      {/* <div className="absolute inset-0 pointer-events-none transition-all duration-500 bg-background/50 backdrop-blur-2xl dark:bg-background/20 dark:backdrop-blur-[2px]" /> */}
     </m.div>
   );
 }
