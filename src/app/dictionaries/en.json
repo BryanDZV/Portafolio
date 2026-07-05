@@ -24,6 +24,9 @@
     "title1": "Projects",
     "title2": "2026.",
     "subtitle": "Swipe to discover the future of development.",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "fullStack": "Full Stack",
     "cta": "LET'S TALK.",
     "cta_subtitle": "Have an idea in mind? Discover how we can build your next big project.",
     "cta_button": "Start Project"

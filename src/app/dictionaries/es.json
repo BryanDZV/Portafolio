@@ -24,6 +24,9 @@
     "title1": "Proyectos",
     "title2": "2026.",
     "subtitle": "Desliza para descubrir el futuro del desarrollo.",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "fullStack": "Full Stack",
     "cta": "HABLEMOS.",
     "cta_subtitle": "¿Tienes una idea en mente? Descubre cómo podemos construir tu próximo gran proyecto.",
     "cta_button": "Empezar Proyecto"
