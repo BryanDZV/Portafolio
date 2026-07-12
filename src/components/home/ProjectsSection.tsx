@@ -61,7 +61,7 @@ function getProjectCategory(project: Project): ProjectCategory {
   );
 
   const hasBackend = normalizedStack.some((tech) =>
-    /(node|express|postgres|mysql|mongo|mongodb|supabase|firebase)/.test(tech),
+    /(node|express|postgres|mysql|mongo|mongodb|firebase)/.test(tech),
   );
 
   if (hasFrontend && hasBackend) return "fullStack";

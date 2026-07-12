@@ -22,9 +22,6 @@ export default async function DashboardPage({
   const { lang } = await params;
 
   // QUE HACE: Protege el panel validando sesión en el propio Server Component.
-  // POR QUE SE ELIGIO: Defensa en profundidad; si falla o se altera el proxy, la ruta sigue cerrada para no autorizados.
-  // COMO FUNCIONA: consulta usuario en Supabase SSR y redirige a login antes de ejecutar cualquier lectura de datos sensibles.
-  // APRENDE MAS: https://nextjs.org/docs/app/api-reference/file-conventions/page y https://supabase.com/docs/guides/auth/server-side/nextjs
   await requireAdminSession({ strategy: "redirect-login", lang });
 
   const projects = await getProjects();
