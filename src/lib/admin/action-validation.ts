@@ -48,7 +48,7 @@ function normalizeOptionalUrl(value: StringEntry) {
 // QUE HACE: Valida y normaliza las credenciales del formulario de login en un contrato explícito.
 // POR QUE SE ELIGIO: Un contrato tipado en la frontera reduce acoplamiento con el provider de autenticación.
 // COMO FUNCIONA: Lee email y password desde FormData, aplica normalización y exige presencia de ambos campos.
-// APRENDE MAS: https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations y https://supabase.com/docs/reference/javascript/auth-signinwithpassword
+// APRENDE MAS: https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations
 export function parseLoginCredentials(formData: FormData): LoginCredentials {
   const email = sanitizeText(formData.get("email"));
   const password = sanitizeText(formData.get("password"));
@@ -106,7 +106,7 @@ export function parseCreateProjectPayload(
 // QUE HACE: Verifica que el identificador recibido para mutaciones destructivas sea UUID válido.
 // POR QUE SE ELIGIO: Validar temprano reduce superficie de error y bloquea entradas malformadas.
 // COMO FUNCIONA: Ejecuta regex UUID v4 y lanza error de dominio cuando el formato no coincide.
-// APRENDE MAS: https://www.rfc-editor.org/rfc/rfc4122 y https://orm.drizzle.team/docs/delete
+// APRENDE MAS: https://www.rfc-editor.org/rfc/rfc4122
 export function assertValidProjectId(id: string) {
   if (!UUID_V4_REGEX.test(id)) {
     throw new Error("ID inválido");
