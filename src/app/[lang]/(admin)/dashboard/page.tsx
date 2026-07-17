@@ -16,20 +16,25 @@ import { requireAdminSession } from "@/lib/admin/auth";
 
 export default async function DashboardPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ lang: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { lang } = await params;
-
-  // QUE HACE: Protege el panel validando sesión en el propio Server Component.
+  const search = await searchParams;
+  
   await requireAdminSession({ strategy: "redirect-login", lang });
 
   const projects = await getProjects();
+  
+  // 1. Miramos si en la URL hay un parámetro ?edit=ID
+  const editingId = search.edit as string;
+  const projectToEdit = editingId ? projects.find(p => p.id === editingId) : null;
 
   return (
     <main className="min-h-screen p-8 bg-background">
       <div className="max-w-6xl mx-auto space-y-8">
-        {/* CABECERA CON BOTÓN DE SALIDA Y ENLACE A LA WEB */}
         <AnimatedFadeIn>
           <header className="flex justify-between items-center border-b border-border pb-6">
             <div>
@@ -42,20 +47,13 @@ export default async function DashboardPage({
             </div>
 
             <div className="flex items-center gap-6">
-              <div className="text-sm text-primary animate-pulse font-(family-name:--font-geist-mono) hidden md:block">
-                [Sesión Activa]
-              </div>
-
-              {/*BOTÓN DE IR AL PORTAFOLIO */}
               <Link
                 href={`/${lang}`}
-                //target="_blank" // Abre en pestaña nueva para no cerrar tu sesión de dashboard
                 className="flex items-center gap-2 text-sm font-medium text-cyan-400 hover:text-cyan-300 uppercase tracking-wider transition-colors"
               >
                 <ExternalLink className="w-4 h-4" />
                 Ver Web
               </Link>
-
               <form action={logoutAction.bind(null, lang)}>
                 <button
                   type="submit"
@@ -68,17 +66,25 @@ export default async function DashboardPage({
           </header>
         </AnimatedFadeIn>
 
-        {/* FORMULARIO  */}
         <AnimatedFadeIn delay={0.08}>
           <section className="mb-12">
-            <h2 className="text-xl font-bold mb-4 font-(family-name:--font-geist-mono) text-primary">
-              [+] Añadir Nuevo Proyecto
-            </h2>
-            <CreateProjectForm />
+            <div className="flex justify-between items-center mb-4">
+              {editingId && (
+                <Link
+                  href={`/${lang}/dashboard`}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  ← Nuevo Proyecto
+                </Link>
+              )}
+            </div>
+             {/* 2. Le pasamos el proyecto al formulario si estamos editando */}
+            <CreateProjectForm
+               projectToEdit={projectToEdit}
+            />
           </section>
         </AnimatedFadeIn>
 
-        {/* TABLA DE DATOS */}
         <AnimatedFadeIn delay={0.14}>
           <Card className="border-primary/20 bg-background/50 backdrop-blur-sm">
             <CardHeader>
@@ -92,24 +98,15 @@ export default async function DashboardPage({
                 <table className="w-full text-sm text-left">
                   <thead className="border-b border-border bg-muted/50">
                     <tr>
-                      <th className="p-4 font-medium text-muted-foreground">
-                        Título
-                      </th>
-                      <th className="p-4 font-medium text-muted-foreground">
-                        Tech Stack
-                      </th>
-                      <th className="p-4 font-medium text-muted-foreground text-right">
-                        Acciones
-                      </th>
+                      <th className="p-4 font-medium text-muted-foreground">Título</th>
+                      <th className="p-4 font-medium text-muted-foreground">Tech Stack</th>
+                      <th className="p-4 font-medium text-muted-foreground text-right">Acciones</th>
                     </tr>
                   </thead>
                   <tbody>
                     {projects.length === 0 ? (
                       <tr>
-                        <td
-                          colSpan={3}
-                          className="p-4 text-center text-muted-foreground"
-                        >
+                        <td colSpan={3} className="p-4 text-center text-muted-foreground">
                           No hay proyectos.
                         </td>
                       </tr>
@@ -125,20 +122,18 @@ export default async function DashboardPage({
                               ? project.techStack.join(", ")
                               : project.techStack}
                           </td>
-
-                          <td className="p-4 text-right flex justify-end gap-4">
-                            <button
-                              disabled
-                              className="text-xs uppercase text-muted-foreground/50 cursor-not-allowed"
+                          <td className="p-4 text-right flex justify-end gap-4 items-center">
+                            
+                            {/* 3. BOTÓN DE EDITAR: Ahora es un Link que añade ?edit=ID a la URL */}
+                            <Link
+                              href={`/${lang}/dashboard?edit=${project.id}`}
+                              className="text-xs uppercase text-cyan-500 font-bold hover:text-cyan-300 transition-colors"
                             >
                               Editar
-                            </button>
+                            </Link>
 
                             <form
-                              action={deleteProjectAction.bind(
-                                null,
-                                project.id,
-                              )}
+                              action={deleteProjectAction.bind(null, project.id)}
                             >
                               <button
                                 type="submit"
