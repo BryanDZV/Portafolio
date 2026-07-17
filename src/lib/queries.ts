@@ -1,11 +1,11 @@
 import "server-only";
 
-import { Project } from "@/types/Project"; // Ajusta la ruta si es necesario
+import { Project } from "@/types/Project";
 
-// Puedes mantener tus constantes de caché si las tenías
+//constantes de caché
 export const PROJECTS_CACHE_TAG = "projects";
 
-// NUEVA FUNCIÓN CONECTADA A SPRING BOOT
+// FUNCIÓN CONECTADA A SPRING BOOT
 export async function getProjects(): Promise<Project[]> {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -16,7 +16,8 @@ export async function getProjects(): Promise<Project[]> {
   try {
     // Hacemos el fetch a tu backend en el puerto 8080
     const res = await fetch(`${apiUrl}/projects`, {
-      // Next.js cacheará esto, pero podemos revalidarlo por tags cuando creemos uno nuevo
+      //ABAJO ESTAMOS CONFIGURANDO LA CACHÉ PARA QUE SE REVALIDE CADA 5 MINUTOS (300 SEGUNDOS)
+      // Esto es útil para no sobrecargar el backend y mantener la UI actualizada
       next: { tags: [PROJECTS_CACHE_TAG], revalidate: 300 },
     });
 
