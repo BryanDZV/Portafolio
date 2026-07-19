@@ -12,10 +12,18 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react"],
   },
   images: {
+    //aqui se configuran los dominios de imagenes externas que se pueden usar en la app
+    //o cualquier otra configuracion de imagenes que se necesite
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**.supabase.co",
+        hostname: "res.cloudinary.com", //permitimos imagenes de cloudinary
+        port: "",
+        pathname: "/**", // para que acepte cualquier subruta
+      },
+      {
+        protocol: "https",
+        hostname: "ejemplo.com", // Para que no explote tu proyecto de prueba de Java
       },
     ],
   },

@@ -1,4 +1,4 @@
-import { createRef } from "react";
+import React, { createRef } from "react";
 import { render, screen } from "@testing-library/react";
 
 import { ProjectCard } from "../ProjectCard";
@@ -11,8 +11,13 @@ jest.mock("@/hooks/use3DTilt", () => ({
 
 jest.mock("next/image", () => ({
   __esModule: true,
-  default: ({ src, alt, fill, sizes, ...props }: any) => (
-    <img src={typeof src === "string" ? src : src?.src} alt={alt} {...props} />
+  default: ({ src, alt, ...props }: Record<string, unknown>) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={typeof src === "string" ? src : (src as { src?: string })?.src}
+      alt={alt as string}
+      {...props}
+    />
   ),
 }));
 
@@ -20,17 +25,18 @@ jest.mock("framer-motion", () => ({
   m: {
     div: ({
       children,
-      whileHover,
-      whileTap,
-      transition,
-      initial,
-      whileInView,
-      viewport,
       ...props
-    }: any) => <div {...props}>{children}</div>,
-    a: ({ children, whileHover, whileTap, transition, ...props }: any) => (
-      <a {...props}>{children}</a>
-    ),
+    }: {
+      children: React.ReactNode;
+      [key: string]: unknown;
+    }) => <div {...props}>{children}</div>,
+    a: ({
+      children,
+      ...props
+    }: {
+      children: React.ReactNode;
+      [key: string]: unknown;
+    }) => <a {...props}>{children}</a>,
   },
 }));
 
@@ -67,12 +73,14 @@ describe("ProjectCard", () => {
     expect(screen.getByText("React")).toBeInTheDocument();
     expect(screen.getByText("Next.js")).toBeInTheDocument();
     expect(screen.getByText("Tailwind")).toBeInTheDocument();
-    expect(
-      screen.getByRole("link", { name: /ver código/i }),
-    ).toHaveAttribute("href", "https://github.com/example/portfolio");
-    expect(
-      screen.getByRole("link", { name: /demo web/i }),
-    ).toHaveAttribute("href", "https://demo.example.com");
+    expect(screen.getByRole("link", { name: /ver código/i })).toHaveAttribute(
+      "href",
+      "https://github.com/example/portfolio",
+    );
+    expect(screen.getByRole("link", { name: /demo web/i })).toHaveAttribute(
+      "href",
+      "https://demo.example.com",
+    );
   });
 
   it("renders the image fallback and hides optional links when urls are missing", () => {

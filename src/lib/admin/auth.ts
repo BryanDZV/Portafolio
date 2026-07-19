@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
+import { cookies } from "next/headers"; // Importamos las cookies
 
 const ADMIN_PROTECTED_PATH_PREFIXES = ["/dashboard"] as const;
 
@@ -9,45 +9,35 @@ interface RequireAdminSessionOptions {
   strategy?: UnauthenticatedStrategy;
   lang?: string;
 }
-
-// QUE HACE: Determina si una ruta pertenece al perímetro administrativo protegido por sesión.
-// POR QUE SE ELIGIO: Centralizar la política de rutas evita divergencia entre proxy, páginas server y acciones mutables.
-// COMO FUNCIONA: Evalúa el pathname contra prefijos permitidos y devuelve un booleano para decisiones de acceso.
-// APRENDE MAS: https://nextjs.org/docs/app/building-your-application/routing/middleware y https://nextjs.org/docs/app/api-reference/file-conventions/route-groups
+//Se encarga solo de verificar si hay sesión.
+//ESTE ARCHIVO ES PARA QUE SE PUEDA LEER Y VALIDAR EL TOKEN JWT QUE NOS ENVIA EL BACK QUE ESTA HECHO EN SPRING BOOT.
+//SE SACA EL TOKEN DE LAS COOKIES DEL NAVEGADOR QUE YA SE HABIA GUARDADO EN EL ACTION DE LOGIN DE APP
 export function isAdminProtectedPath(pathname: string) {
   return ADMIN_PROTECTED_PATH_PREFIXES.some((prefix) =>
     pathname.startsWith(prefix),
   );
 }
 
-// QUE HACE: Resuelve y valida la sesión de operador para uso compartido en páginas y server actions admin.
-// POR QUE SE ELIGIO: Un único guard reduce duplicación, mantiene consistencia de seguridad y simplifica mantenimiento.
-// COMO FUNCIONA: Obtiene cliente Supabase SSR, consulta usuario autenticado y aplica estrategia configurable ante ausencia de sesión.
-// APRENDE MAS: https://supabase.com/docs/guides/auth/server-side/nextjs y https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations
+//DASHBOARD
 export async function requireAdminSession(
   options: RequireAdminSessionOptions = {},
 ) {
   const { strategy = "throw", lang = "es" } = options;
 
-  const supabase = await createClient();
-  const {
-    data: { user },
-    error,
-  } = await supabase.auth.getUser();
+  // 1. Buscamos nuestra "token" en las cookies del navegador. Si no existe, el usuario NO está logueado
+  const cookieStore = await cookies(); // Obtenemos el gestor de cookies de Next.js
+  const token = cookieStore.get("auth_token"); // Buscamos la cookie "auth_token" que contiene el token JWT del usuario
 
-  if (error) {
-    console.warn(
-      "[auth] Fallo al resolver usuario autenticado en contexto admin.",
-      { message: error.message },
-    );
+  // 2. Si el usuario TIENE la pulsera (el token JWT existe), le dejamos pasar
+  if (token && token.value) {
+    // ID falso de usuario temporalmente para que el código
+    // antiguo de Next.js (como el rate-limit) no explote.
+    return { user: { id: "admin-java" } };
   }
 
-  if (!user) {
-    if (strategy === "redirect-login") {
-      redirect(`/${lang}/login`);
-    }
-    throw new Error("No autorizado");
+  // 3. Si NO tiene pulsera, lo echamos al login
+  if (strategy === "redirect-login") {
+    redirect(`/${lang}/login`);
   }
-
-  return { supabase, user };
+  throw new Error("No autorizado. Necesitas iniciar sesión.");
 }

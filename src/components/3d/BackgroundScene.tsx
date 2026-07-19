@@ -54,7 +54,6 @@ export function BackgroundScene() {
       {(!shouldRenderSpline || isTimeout) && (
         <div className="h-full w-full opacity-30 bg-[radial-gradient(circle_at_center,var(--primary),transparent_70%)]" />
       )}
-
     </m.div>
   );
 }

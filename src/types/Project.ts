@@ -7,4 +7,5 @@ export interface Project {
   liveUrl?: string | null;
   githubUrl?: string | null;
   createdAt: Date;
+  category: string;
 }
