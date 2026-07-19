@@ -13,18 +13,30 @@ jest.mock("next/image", () => ({
   __esModule: true,
   default: ({ src, alt, ...props }: Record<string, unknown>) => (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src={typeof src === "string" ? src : (src as { src?: string })?.src} alt={alt as string} {...props} />
+    <img
+      src={typeof src === "string" ? src : (src as { src?: string })?.src}
+      alt={alt as string}
+      {...props}
+    />
   ),
 }));
 
 jest.mock("framer-motion", () => ({
   m: {
-    div: ({ children, ...props }: { children: React.ReactNode; [key: string]: unknown }) => (
-      <div {...props}>{children}</div>
-    ),
-    a: ({ children, ...props }: { children: React.ReactNode; [key: string]: unknown }) => (
-      <a {...props}>{children}</a>
-    ),
+    div: ({
+      children,
+      ...props
+    }: {
+      children: React.ReactNode;
+      [key: string]: unknown;
+    }) => <div {...props}>{children}</div>,
+    a: ({
+      children,
+      ...props
+    }: {
+      children: React.ReactNode;
+      [key: string]: unknown;
+    }) => <a {...props}>{children}</a>,
   },
 }));
 
