@@ -67,12 +67,14 @@ describe("ProjectCard", () => {
     expect(screen.getByText("React")).toBeInTheDocument();
     expect(screen.getByText("Next.js")).toBeInTheDocument();
     expect(screen.getByText("Tailwind")).toBeInTheDocument();
-    expect(
-      screen.getByRole("link", { name: /ver código/i }),
-    ).toHaveAttribute("href", "https://github.com/example/portfolio");
-    expect(
-      screen.getByRole("link", { name: /demo web/i }),
-    ).toHaveAttribute("href", "https://demo.example.com");
+    expect(screen.getByRole("link", { name: /ver código/i })).toHaveAttribute(
+      "href",
+      "https://github.com/example/portfolio",
+    );
+    expect(screen.getByRole("link", { name: /demo web/i })).toHaveAttribute(
+      "href",
+      "https://demo.example.com",
+    );
   });
 
   it("renders the image fallback and hides optional links when urls are missing", () => {

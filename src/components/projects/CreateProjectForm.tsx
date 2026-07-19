@@ -2,7 +2,10 @@
 
 import { useEffect, useRef, useState, type ChangeEvent } from "react";
 import { m, useReducedMotion } from "framer-motion";
-import { createProjectAction, updateProjectAction } from "@/app/[lang]/(admin)/dashboard/actions";
+import {
+  createProjectAction,
+  updateProjectAction,
+} from "@/app/[lang]/(admin)/dashboard/actions";
 import { LoadingButton } from "@/components/ui/LoadingButton";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -20,7 +23,7 @@ const MAX_UPLOAD_SIZE_BYTES = 5 * 1024 * 1024;
 // También recibimos una función para cerrar el formulario si estamos editando
 export function CreateProjectForm({
   projectToEdit = null,
-  onCancelEdit = () => { }
+  onCancelEdit = () => {},
 }: {
   projectToEdit?: Project | null;
   onCancelEdit?: () => void;
@@ -59,7 +62,10 @@ export function CreateProjectForm({
       }
     } catch (error) {
       console.error("Error:", error);
-      showToast(error instanceof Error ? error.message : "Error desconocido", "error");
+      showToast(
+        error instanceof Error ? error.message : "Error desconocido",
+        "error",
+      );
     }
   }
 
@@ -96,7 +102,11 @@ export function CreateProjectForm({
             {isEditing ? "✏️ Editando Proyecto" : "Nuevo Proyecto"}
           </h3>
           {isEditing && (
-            <button type="button" onClick={onCancelEdit} className="text-sm text-destructive hover:underline">
+            <button
+              type="button"
+              onClick={onCancelEdit}
+              className="text-sm text-destructive hover:underline"
+            >
               Cancelar Edición
             </button>
           )}
@@ -147,7 +157,9 @@ export function CreateProjectForm({
             name="techStack"
             required
             placeholder="Next.js, Tailwind, PostgreSQL"
-            defaultValue={projectToEdit?.techStack ? projectToEdit.techStack.join(", ") : ""}
+            defaultValue={
+              projectToEdit?.techStack ? projectToEdit.techStack.join(", ") : ""
+            }
           />
         </m.div>
 
@@ -160,16 +172,19 @@ export function CreateProjectForm({
           )}
           <Input
             id="imageFile"
-          
+
             name="imageFile"
             type="file"
             accept="image/*"
             required={!isEditing} // Solo es obligatorio si estamos creando
             className="cursor-pointer file:text-primary"
             onChange={handleImageValidation}
-            
           />
-          {imageError && <p className="text-red-500 text-xs mt-1 font-medium">{imageError}</p>}
+          {imageError && (
+            <p className="text-red-500 text-xs mt-1 font-medium">
+              {imageError}
+            </p>
+          )}
         </m.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -198,7 +213,9 @@ export function CreateProjectForm({
         </div>
 
         <m.div variants={FADE_UP_ITEM} className="pt-4">
-          <LoadingButton loadingText={isEditing ? "GUARDANDO..." : "CREANDO PROYECTO..."}>
+          <LoadingButton
+            loadingText={isEditing ? "GUARDANDO..." : "CREANDO PROYECTO..."}
+          >
             {isEditing ? "GUARDAR CAMBIOS" : "AÑADIR PROYECTO"}
           </LoadingButton>
         </m.div>

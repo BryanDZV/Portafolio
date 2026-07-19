@@ -23,14 +23,16 @@ export default async function DashboardPage({
 }) {
   const { lang } = await params;
   const search = await searchParams;
-  
+
   await requireAdminSession({ strategy: "redirect-login", lang });
 
   const projects = await getProjects();
-  
+
   // 1. Miramos si en la URL hay un parámetro ?edit=ID
   const editingId = search.edit as string;
-  const projectToEdit = editingId ? projects.find(p => p.id === editingId) : null;
+  const projectToEdit = editingId
+    ? projects.find((p) => p.id === editingId)
+    : null;
 
   return (
     <main className="min-h-screen p-8 bg-background">
@@ -78,10 +80,8 @@ export default async function DashboardPage({
                 </Link>
               )}
             </div>
-             {/* 2. Le pasamos el proyecto al formulario si estamos editando */}
-            <CreateProjectForm
-               projectToEdit={projectToEdit}
-            />
+            {/* 2. Le pasamos el proyecto al formulario si estamos editando */}
+            <CreateProjectForm projectToEdit={projectToEdit} />
           </section>
         </AnimatedFadeIn>
 
@@ -98,15 +98,24 @@ export default async function DashboardPage({
                 <table className="w-full text-sm text-left">
                   <thead className="border-b border-border bg-muted/50">
                     <tr>
-                      <th className="p-4 font-medium text-muted-foreground">Título</th>
-                      <th className="p-4 font-medium text-muted-foreground">Tech Stack</th>
-                      <th className="p-4 font-medium text-muted-foreground text-right">Acciones</th>
+                      <th className="p-4 font-medium text-muted-foreground">
+                        Título
+                      </th>
+                      <th className="p-4 font-medium text-muted-foreground">
+                        Tech Stack
+                      </th>
+                      <th className="p-4 font-medium text-muted-foreground text-right">
+                        Acciones
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
                     {projects.length === 0 ? (
                       <tr>
-                        <td colSpan={3} className="p-4 text-center text-muted-foreground">
+                        <td
+                          colSpan={3}
+                          className="p-4 text-center text-muted-foreground"
+                        >
                           No hay proyectos.
                         </td>
                       </tr>
@@ -123,7 +132,6 @@ export default async function DashboardPage({
                               : project.techStack}
                           </td>
                           <td className="p-4 text-right flex justify-end gap-4 items-center">
-                            
                             {/* 3. BOTÓN DE EDITAR: Ahora es un Link que añade ?edit=ID a la URL */}
                             <Link
                               href={`/${lang}/dashboard?edit=${project.id}`}
@@ -133,7 +141,10 @@ export default async function DashboardPage({
                             </Link>
 
                             <form
-                              action={deleteProjectAction.bind(null, project.id)}
+                              action={deleteProjectAction.bind(
+                                null,
+                                project.id,
+                              )}
                             >
                               <button
                                 type="submit"

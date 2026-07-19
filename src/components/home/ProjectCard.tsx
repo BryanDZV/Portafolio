@@ -107,7 +107,12 @@ function TechIconGlyph({
   className?: string;
 }) {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="currentColor">
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className={className}
+      fill="currentColor"
+    >
       <path d={icon.path} />
     </svg>
   );
@@ -148,14 +153,17 @@ export function ProjectCard({
         }}
         className={CARD_SURFACE_CLASS}
       >
-        <div style={{ transform: "translateZ(40px)" }} className={CARD_HEADER_CLASS}>
+        <div
+          style={{ transform: "translateZ(40px)" }}
+          className={CARD_HEADER_CLASS}
+        >
           <h3 className={CARD_TITLE_CLASS}>
             <Terminal className={CARD_TITLE_ICON_CLASS} /> {title}
           </h3>
           <p className={CARD_DESCRIPTION_CLASS}>{description}</p>
         </div>
 
-{/* ref={ref}
+        {/* ref={ref}
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
         whileHover={{ scale: 1.02 }}
@@ -164,7 +172,7 @@ export function ProjectCard({
           rotateY,
           transformStyle: "preserve-3d",
           willChange: "transform", */}
-        
+
         <m.div
           style={{ transform: "translateX(80px)" }}
           whileHover={{ scale: 1.03, y: -7 }}
@@ -188,11 +196,17 @@ export function ProjectCard({
           )}
         </m.div>
 
-        <div style={{ transform: "translateZ(60px)" }} className={CARD_BADGES_CLASS}>
+        <div
+          style={{ transform: "translateZ(60px)" }}
+          className={CARD_BADGES_CLASS}
+        >
           {resolvedTechBadges.map((badge) => (
             <span key={badge.key} className={CARD_BADGE_CLASS}>
               {badge.icon ? (
-                <TechIconGlyph icon={badge.icon} className={CARD_BADGE_ICON_CLASS} />
+                <TechIconGlyph
+                  icon={badge.icon}
+                  className={CARD_BADGE_ICON_CLASS}
+                />
               ) : (
                 <Code2 className={CARD_BADGE_ICON_CLASS} />
               )}
@@ -201,7 +215,10 @@ export function ProjectCard({
           ))}
         </div>
 
-        <div style={{ transform: "translateZ(40px)" }} className={CARD_ACTIONS_CLASS}>
+        <div
+          style={{ transform: "translateZ(40px)" }}
+          className={CARD_ACTIONS_CLASS}
+        >
           {githubUrl ? (
             <m.a
               href={githubUrl}

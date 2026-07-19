@@ -3,11 +3,7 @@
 import { useRef } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import {
-  m,
-  useInView,
-  useReducedMotion,
-} from "framer-motion";
+import { m, useInView, useReducedMotion } from "framer-motion";
 import { ProjectCard } from "./ProjectCard";
 import { AnimatedSplitTitle } from "@/components/ui/AnimatedSplitTitle";
 import { getInViewReveal, STANDARD_EASE } from "@/components/ui/motion-presets";
@@ -34,8 +30,7 @@ type GroupedProjects = Record<ProjectCategory, Project[]>;
 const SECTION_STAGE_CLASS =
   "flex h-[500px] md:h-[580px] lg:h-[620px] w-full items-center justify-center";
 
-const EMPTY_STATE_CLASS =
-  `${SECTION_STAGE_CLASS} rounded-2xl border border-dashed border-border bg-card/60`;
+const EMPTY_STATE_CLASS = `${SECTION_STAGE_CLASS} rounded-2xl border border-dashed border-border bg-card/60`;
 
 const SECTION_HEADER_CLASS =
   "mb-5 md:mb-6 flex items-end justify-between gap-4 border-b border-primary/20 pb-3 md:pb-4";
@@ -159,12 +154,10 @@ export function ProjectsSection({
                   <section key={section.key} className="pointer-events-auto">
                     <div className={SECTION_HEADER_CLASS}>
                       <div>
-                       
                         <h3 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight text-projects-heading drop-shadow-[0_8px_22px_rgba(0,0,0,0.28)] uppercase">
                           {section.title}
                         </h3>
                       </div>
-                  
                     </div>
 
                     <div className={SECTION_GRID_CLASS}>
