@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import Image from "next/image";
 import { m } from "framer-motion";
 import { Code2, ExternalLink, Terminal } from "lucide-react";

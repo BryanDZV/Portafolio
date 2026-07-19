@@ -1,5 +1,5 @@
 // QUE HACE: Define la estructura estricta del JSON que esperamos recibir del servidor para esta sección.
-interface ProjectsDictionary {
+export interface ProjectsDictionary {
   title1: string;
   title2: string;
   subtitle: string;
