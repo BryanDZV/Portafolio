@@ -35,7 +35,7 @@ export async function createProjectAction(formData: FormData) {
 
   // 4. Enviamos todo a Java
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  const res = await fetch(`${apiUrl}/api/projects`, {
+  const res = await fetch(`${apiUrl}/projects`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -64,7 +64,7 @@ export async function deleteProjectAction(id: string) {
   const token = cookieStore.get("auth_token")?.value;
 
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  const res = await fetch(`${apiUrl}/api/projects/${id}`, {
+  const res = await fetch(`${apiUrl}/projects/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`, // Enseñamos la credencial para poder borrar
