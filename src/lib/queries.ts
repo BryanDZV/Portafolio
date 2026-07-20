@@ -15,7 +15,7 @@ export async function getProjects(): Promise<Project[]> {
 
   try {
     // Hacemos el fetch a tu backend en el puerto 8080
-    const res = await fetch(`${apiUrl}/api/projects`, {
+    const res = await fetch(`${apiUrl}/projects`, {
       //ABAJO ESTAMOS CONFIGURANDO LA CACHÉ PARA QUE SE REVALIDE CADA 5 MINUTOS (300 SEGUNDOS)
       // Esto es útil para no sobrecargar el backend y mantener la UI actualizada
       next: { tags: [PROJECTS_CACHE_TAG], revalidate: 300 },
