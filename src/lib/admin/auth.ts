@@ -18,6 +18,15 @@ export function isAdminProtectedPath(pathname: string) {
   );
 }
 
+export async function redirectIfAuthenticated(lang: string) {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("auth_token");
+
+  if (token && token.value) {
+    redirect(`/${lang}/dashboard`);
+  }
+}
+
 //DASHBOARD
 export async function requireAdminSession(
   options: RequireAdminSessionOptions = {},
