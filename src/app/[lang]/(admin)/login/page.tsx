@@ -13,6 +13,7 @@ import { LoginErrorToast } from "@/components/admin/LoginErrorToast";
 import Link from "next/link";
 //importamo nuestra accion
 import { loginAction } from "./actions";
+import { redirectIfAuthenticated } from "@/lib/admin/auth";
 
 export default async function LoginPage({
   params,
@@ -20,6 +21,8 @@ export default async function LoginPage({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
+
+  await redirectIfAuthenticated(lang);
 
   return (
     <main className="flex min-h-screen items-center justify-center p-4">
