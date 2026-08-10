@@ -4,6 +4,7 @@ import { ProjectsSection } from "@/components/home/ProjectsSection";
 import { SectionTransition } from "@/components/ui/SectionTransition";
 import { getDictionary } from "@/app/dictionaries/getDictionary";
 import { getProjects } from "@/lib/queries";
+import { TechCarousel } from "@/components/ui/TechCarousel";
 
 export default async function Home({
   params,
@@ -26,7 +27,7 @@ export default async function Home({
       <SectionTransition>
         <HeroSection dictionary={dictionary.hero} />
       </SectionTransition>
-
+      <TechCarousel />
       <SectionTransition delay={0.8}>
         <ProjectsSection
           projects={myProjects}
