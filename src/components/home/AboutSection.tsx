@@ -5,6 +5,7 @@ import { m, useInView, useReducedMotion, easeInOut } from "framer-motion";
 import { Code2, MapPin, Rocket as LucideRocket, Terminal } from "lucide-react";
 import { Motion3DCard } from "@/components/ui/Motion3DCard";
 import { AnimatedSplitTitle } from "@/components/ui/AnimatedSplitTitle";
+import { TECH_STACK } from "@/lib/tech-icons";
 
 interface AboutDictionary {
   title1: string;
@@ -26,24 +27,10 @@ export function AboutSection({ dictionary }: { dictionary: AboutDictionary }) {
   const sectionInView = useInView(sectionRef, { amount: 0.15, once: false });
 
   const shouldAnimateLoops = !shouldReduceMotion && sectionInView;
+  const coreStackNames = TECH_STACK.map((t) => t.name);
 
-  // QUE HACE: Declara el stack tecnológico mostrado como unidades interactivas dentro de la tarjeta de habilidades.
-  // POR QUE SE ELIGIO: Un arreglo plano inmutable simplifica renderizado declarativo, reduce complejidad accidental y facilita mantenimiento de contenido.
-  // COMO FUNCIONA: Se itera con map en la capa de UI para producir chips arrastrables con key estable basada en cada tecnología.
   // APRENDE MAS: https://react.dev/reference/react y https://motion.dev/docs/react
-  const techStack = [
-    "Next.js",
-    "React",
-    "Angular",
-    "Node.js",
-    "Express.js",
-    "PostgreSQL",
-    "TypeScript",
-    "Tailwind",
-  ];
 
-  // QUE HACE: Define la transición de entrada compartida por las tarjetas sticky de la sección About.
-  // POR QUE SE ELIGIO: Centralizar variantes evita duplicación de configuraciones de animación y mantiene coherencia perceptiva entre bloques.
   // COMO FUNCIONA: Cada motion.div consume hidden/visible y framer-motion interpola opacidad, escala y desplazamiento vertical con easing uniforme.
   // APRENDE MAS: https://react.dev/reference/react y https://motion.dev/docs/react
   const slideInVariants = {
@@ -165,7 +152,7 @@ export function AboutSection({ dictionary }: { dictionary: AboutDictionary }) {
                 {/* POR QUE SE ELIGIO: La microinteracción incrementa engagement sin introducir navegación extra ni estado global adicional. */}
                 {/* COMO FUNCIONA: dragConstraints referencia el contenedor padre y framer-motion aplica elasticidad y cancelación de momentum para control preciso. */}
                 {/* APRENDE MAS: https://react.dev/reference/react y https://motion.dev/docs/react */}
-                {techStack.map((tech) => (
+                {coreStackNames.map((tech) => (
                   <m.div
                     key={tech}
                     drag
