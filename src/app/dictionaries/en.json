@@ -1,24 +1,65 @@
 {
   "hero": {
-    "badge": "Immersive Portfolio v1.0",
+    "badge": "Portfolio v1.0",
     "title1": "Portfolio",
     "title2": "Bryan Zavala.",
     "subtitle": "Full Stack Developer",
-    "stack": "Next.js, React.js, Angular, Node, Sql",
-    "description": "improving every day.",
+    "description": "Welcome to my portfolio. Here you'll find a selection of projects that reflect the technology I use.",
     "cta_button": "VIEW PROJECTS"
   },
   "about": {
-    "title1": "About",
-    "title2": "Me",
-    "card1_title": "Hi, I'm Bryan Zavala",
-    "card1_description": "Junior Web Developer (DAW degree). During my training, I've learned to build web applications from scratch using technologies like Next.js, Angular, React, Node.js, Express.js, and PostgreSQL. I'm aware that I'm at the beginning of my career and there's still much to learn.",
-    "card2_title": "Base of Operations",
-    "card2_location": "Madrid, Spain",
-    "card3_title": "Core Stack",
-    "card4_title": "Work Philosophy",
-    "card4_description1": "I firmly believe in rapid iteration and continuous learning. Every mistake is a lesson and every project is an opportunity to push my own boundaries.",
-    "card4_description2": "2026 is the year to build without limits."
+    "title": "About Me",
+    "motto": 
+      "Every mistake is one step closer to the solution. If there are no mistakes, there is no learning.",
+    "headline": "Web Developer in Madrid, Spain.",
+    "biographyTitle": "Hi, I'm Bryan Zavala",
+    "biography": [
+      "Junior Web Developer. During my training I learned to build web applications from scratch using modern technologies.",
+      "I am aware that I am at the beginning of my career and still have a lot to learn, but I like to look for solutions."
+    ],
+    "techStackTitle": "Core Technology Stack",
+    "mainStack": [
+      {
+        "categoryName": "Frontend",
+        "technologies": ["Next.js", "React", "Angular", "Tailwind CSS", "TypeScript", "JavaScript", "HTML5", "CSS3"]
+      },
+      {
+        "categoryName": "Backend",
+        "technologies": ["Node.js", "Express.js", "Spring Boot", "PostgreSQL", "MongoDB", "MySQL", "Java 21"]
+      },
+      {
+        "categoryName": "DevOps & Cloud",
+        "technologies": ["Git", "GitHub", "Docker", "CI/CD", "Netlify", "Vercel", "Linux", "Bash", "Apache"]
+      },
+      {
+        "categoryName": "Software Architecture and Design",
+        "technologies": ["Clean Architecture", "MVC", "RESTful APIs", "Layered Architecture"]
+      }
+    ],
+    "coreSkillsTitle": "Soft Skills",
+    "coreSkills": [
+      "Continuous Learning",
+      "Clean Architecture",
+      "Problem Solving",
+      "Teamwork",
+      "Adaptability",
+      "Creativity",
+      "Time Management",
+      "Empathy",
+      "Collaboration",
+      "Resilience",
+      "Self-Learning"
+    ],
+    "experienceTitle": "Experience and Education",
+    "experiences": [
+      {
+        "id": 1,
+        "role": "Web Developer (DAW Graduate)",
+        "company": "Technical Education",
+        "period": "Present",
+        "description": "Full Stack web application development. Specialized in API creation and integration through modern interfaces."
+      }
+    ]
   },
   "projects": {
     "title1": "Projects",
@@ -43,10 +84,16 @@
     "built_in": "Built in Madrid"
   },
   "contact": {
-    "page_title": "Contact",
+    "pageTitle": "Contact",
     "description": "Tell me about the business objective, technical scope, and project constraints. I'll respond with a clear proposal for architecture and execution.",
-    "email_label": "Send email to Bryan Zavala",
+    "emailLabel": "Send email to Bryan Zavala",
     "email": "bryan.dweb@gmail.com",
-    "back_link": "Back to Home"
+    "backLink": "Back to Home",
+    "availability": "Available for new opportunities",
+    "location": "Madrid, Spain (Remote / On-site)",
+    "socials": {
+      "githubLabel": "GitHub",
+      "linkedinLabel": "LinkedIn"
+    }
   }
 }

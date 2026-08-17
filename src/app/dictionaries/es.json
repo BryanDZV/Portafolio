@@ -1,29 +1,71 @@
 {
   "hero": {
-    "badge": "Portafolio Inmersivo v1.0",
+    "badge": "Portafolio v1.0",
     "title1": "Portafolio",
     "title2": "Bryan Zavala.",
     "subtitle": "Desarrollador Full Stack",
-    "stack": "Next.js, React.js, Angular, Node, Sql",
-    "description": "mejorando cada día.",
+    "description": "Bienvenido a mi portafolio . Aquí encontrarás una selección de proyectos que reflejan la tecnología que uso .",
     "cta_button": "VER PROYECTOS"
   },
   "about": {
-    "title1": "Sobre",
-    "title2": "Mí",
-    "card1_title": "Hola, soy Bryan Zavala",
-    "card1_description": "Desarrollador Web Junior (titulado en DAW). Durante mi formación he aprendido a construir aplicaciones web desde cero utilizando tecnologías como Next.js, Angular, React, Node.js, Express.js y PostgreSQL. Soy consciente de que estoy al principio de mi carrera y que me queda mucho por aprender.",
-    "card2_title": "Base de Operaciones",
-    "card2_location": "Madrid, España",
-    "card3_title": "Core Stack",
-    "card4_title": "Filosofía de Trabajo",
-    "card4_description1": "Creo firmemente en la iteración rápida y el aprendizaje continuo. Cada error es una lección y cada proyecto es una oportunidad para superar mis propios límites.",
-    "card4_description2": "2026 es el año de construir sin fronteras."
+    "title": "Sobre Mí",
+    "motto": 
+      "Cada error es un paso más cerca de la solución. Si no hay errores, no hay aprendizaje.",
+    "headline": "Desarrollador Web en Madrid, España.",
+    "biographyTitle": "Hola, soy Bryan Zavala",
+    "biography": [
+      "Desarrollador Web Junior. Durante mi formación he aprendido a construir aplicaciones web desde cero utilizando tecnologías modernas.",
+      "Soy consciente de que estoy al principio de mi carrera y que me queda mucho por aprender, pero me gusta buscar soluciones."
+      
+    ],
+    "techStackTitle": "Core Stack Tecnológico",
+    "mainStack": [
+      {
+        "categoryName": "Frontend",
+        "technologies": ["Next.js", "React", "Angular", "Tailwind CSS", "TypeScript", "JavaScript", "HTML5", "CSS3"]
+      },
+      {
+        "categoryName": "Backend ",
+        "technologies": ["Node.js", "Express.js", "Spring Boot", "PostgreSQL", "MongoDB", "MySQL", "Java 21"]
+      },
+      {
+        "categoryName": "DevOps & Cloud",
+        "technologies": ["Git", "GitHub", "Docker", "CI/CD", "Netlify", "Vercel", "Linux", "Bash", "Apache"]
+      },
+      {
+        "categoryName": "Arquitectura y Diseño de Software",
+        "technologies": ["Clean Architecture", "MVC", "RESTful APIs","Arquitectura por Capas"]
+      }
+    ],
+    "coreSkillsTitle": "Habilidades Blandas",
+    "coreSkills": [
+      "Aprendizaje Continuo",
+      "Arquitectura Limpia",
+      "Resolución de Problemas",
+      "Trabajo en Equipo",
+      "Adaptabilidad",
+      "Creatividad",
+      "Gestión del Tiempo",
+      "Empatía",
+      "Colaboración",
+      "Resiliencia",
+      "Aprendizaje Autónomo"
+    ],
+    "experienceTitle": "Trayectoria y Formación",
+    "experiences": [
+      {
+        "id": 1,
+        "role": "Desarrollador Web (Titulado DAW)",
+        "company": "Formación Técnica",
+        "period": "Actualidad",
+        "description": "Desarrollo de aplicaciones web Full Stack. Especialización en la creación de APIs y consumo de las mismas a través de interfaces modernas."
+      }
+    ]
   },
   "projects": {
     "title1": "Proyectos",
     "title2": "2026.",
-    "subtitle": "Desliza para descubrir el futuro del desarrollo.",
+    "subtitle": "",
     "frontend": "Frontend",
     "backend": "Backend",
     "fullStack": "Full Stack",
@@ -43,10 +85,16 @@
     "built_in": "Construido en Madrid"
   },
   "contact": {
-    "page_title": "Contacto",
-    "description": "Cuéntame el objetivo de negocio, alcance técnico y restricciones del proyecto. Te responderé con una propuesta clara de arquitectura y ejecución.",
-    "email_label": "Enviar correo a Bryan Zavala",
-    "email": "bryan.dweb@gmail.com",
-    "back_link": "Volver al inicio"
+    "pageTitle": "Contacto",
+    "description": "Una pequeña sección para que tengas mis datos de contacto y puedas comunicarte conmigo. Esperando a nuevas oportunidades y colaboraciones.",
+    "emailLabel": "Enviar correo a Bryan Zavala",
+    "email": "dev.bryanzavala@gmail.com",
+    "backLink": "Volver al inicio",
+    "availability": "Disponible para nuevas oportunidades",
+    "location": "Madrid, España (Remoto / Presencial/Híbrido )",
+    "socials": {
+      "githubLabel": "GitHub",
+      "linkedinLabel": "LinkedIn"
+    }
   }
 }
