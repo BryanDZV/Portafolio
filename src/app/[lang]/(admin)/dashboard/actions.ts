@@ -25,8 +25,8 @@ export async function createProjectAction(formData: FormData) {
   const cookieStore = await cookies();
   const token = cookieStore.get("auth_token")?.value;
 
-  // 3. Ajuste importante: Tu frontend quizás manda la imagen como 'imageFile',
-  // pero tu Java espera que se llame 'image' (por el @RequestParam("image")).
+  // 3.  frontend quizás manda la imagen como 'imageFile',
+  // Java espera que se llame 'image' (por el @RequestParam("image")).
   const imageFile = formData.get("imageFile");
   if (imageFile) {
     formData.delete("imageFile");

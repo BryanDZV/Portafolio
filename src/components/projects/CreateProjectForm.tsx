@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState, type ChangeEvent } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ChangeEvent,
+  type FormEvent,
+} from "react";
 import { m, useReducedMotion } from "framer-motion";
 import {
   createProjectAction,
@@ -19,8 +25,28 @@ import type { Project } from "@/types/Project";
 
 const MAX_UPLOAD_SIZE_BYTES = 5 * 1024 * 1024;
 
-// 1. Añadimos props para recibir un proyecto si estamos en "modo edición"
-// También recibimos una función para cerrar el formulario si estamos editando
+type CategoryValue = "FRONTEND" | "BACKEND" | "FULLSTACK";
+
+interface ProjectFormState {
+  title: string;
+  description: string;
+  category: CategoryValue;
+  techStack: string;
+  githubUrl: string;
+  liveUrl: string;
+}
+
+function getInitialState(projectToEdit: Project | null): ProjectFormState {
+  return {
+    title: projectToEdit?.title ?? "",
+    description: projectToEdit?.description ?? "",
+    category: (projectToEdit?.category as CategoryValue) || "FRONTEND",
+    techStack: projectToEdit?.techStack?.join(", ") ?? "",
+    githubUrl: projectToEdit?.githubUrl ?? "",
+    liveUrl: projectToEdit?.liveUrl ?? "",
+  };
+}
+
 export function CreateProjectForm({
   projectToEdit = null,
   onCancelEdit = () => {},
@@ -29,12 +55,15 @@ export function CreateProjectForm({
   onCancelEdit?: () => void;
 }) {
   const formRef = useRef<HTMLFormElement>(null);
+  const imageInputRef = useRef<HTMLInputElement>(null);
   const shouldReduceMotion = useReducedMotion() ?? false;
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [toastType, setToastType] = useState<"success" | "error">("success");
-  const [imageError, setImageError] = useState<string | null>(null); //estado para imagen errores
+  const [imageError, setImageError] = useState<string | null>(null);
+  const [formState, setFormState] = useState<ProjectFormState>(() =>
+    getInitialState(projectToEdit),
+  );
 
-  // 2. Si estamos editando, el modo es 'edit', sino es 'create'
   const isEditing = !!projectToEdit;
 
   useEffect(() => {
@@ -48,16 +77,60 @@ export function CreateProjectForm({
     setToastMessage(message);
   }
 
-  async function clientAction(formData: FormData) {
+  function updateField<K extends keyof ProjectFormState>(
+    field: K,
+    value: ProjectFormState[K],
+  ) {
+    setFormState((prev) => ({ ...prev, [field]: value }));
+  }
+
+  function handleImageValidation(event: ChangeEvent<HTMLInputElement>) {
+    const selectedFile = event.target.files?.[0];
+    if (!selectedFile) {
+      setImageError(null);
+      return;
+    }
+
+    if (!selectedFile.type.startsWith("image/")) {
+      event.target.value = "";
+      setImageError("El archivo debe ser una imagen (JPG, PNG, etc).");
+      return;
+    }
+
+    if (selectedFile.size > MAX_UPLOAD_SIZE_BYTES) {
+      event.target.value = "";
+      setImageError("La imagen es muy pesada. El límite es 5MB.");
+      return;
+    }
+
+    setImageError(null);
+  }
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append("title", formState.title);
+    formData.append("description", formState.description);
+    formData.append("category", formState.category);
+    formData.append("techStack", formState.techStack);
+    formData.append("githubUrl", formState.githubUrl);
+    formData.append("liveUrl", formState.liveUrl);
+
+    const imageFile = imageInputRef.current?.files?.[0];
+    if (imageFile) {
+      formData.append("imageFile", imageFile);
+    }
+
     try {
-      // 3. Decidimos qué acción llamar según el modo
       if (isEditing) {
         await updateProjectAction(projectToEdit.id, formData);
         showToast("Proyecto actualizado correctamente.", "success");
-        onCancelEdit(); // Cerramos el modo edición al terminar
+        onCancelEdit();
       } else {
         await createProjectAction(formData);
         formRef.current?.reset();
+        setFormState(getInitialState(null));
         showToast("Proyecto creado correctamente.", "success");
       }
     } catch (error) {
@@ -69,28 +142,12 @@ export function CreateProjectForm({
     }
   }
 
-  function handleImageValidation(event: ChangeEvent<HTMLInputElement>) {
-    const selectedFile = event.target.files?.[0];
-    if (!selectedFile) return;
-
-    if (!selectedFile.type.startsWith("image/")) {
-      event.target.value = ""; // Vaciamos el archivo
-      setImageError(" El archivo debe ser una imagen (JPG, PNG, etc).");
-      return;
-    }
-
-    if (selectedFile.size > MAX_UPLOAD_SIZE_BYTES) {
-      event.target.value = ""; // Vaciamos el archivo para que no se envíe
-      setImageError(" La imagen es muy pesada. El límite es 5MB.");
-    }
-  }
-
   return (
     <>
       <ToastFeedback message={toastMessage} type={toastType} />
       <m.form
         ref={formRef}
-        action={clientAction}
+        onSubmit={handleSubmit}
         variants={STAGGER_CONTAINER(shouldReduceMotion)}
         initial="hidden"
         whileInView="visible"
@@ -119,7 +176,8 @@ export function CreateProjectForm({
             name="title"
             required
             placeholder="Nombre del proyecto"
-            defaultValue={projectToEdit?.title || ""} // <-- Rellena si hay datos
+            value={formState.title}
+            onChange={(e) => updateField("title", e.target.value)}
           />
         </m.div>
 
@@ -131,17 +189,21 @@ export function CreateProjectForm({
             required
             placeholder="¿De qué trata?"
             className="min-h-[100px]"
-            defaultValue={projectToEdit?.description || ""}
+            value={formState.description}
+            onChange={(e) => updateField("description", e.target.value)}
           />
         </m.div>
-        {/* CATEGORÍA */}
+
         <m.div variants={FADE_UP_ITEM} className="space-y-2">
           <Label htmlFor="category">Categoría</Label>
           <select
             id="category"
             name="category"
             required
-            defaultValue={projectToEdit?.category || "FRONTEND"}
+            value={formState.category}
+            onChange={(e) =>
+              updateField("category", e.target.value as CategoryValue)
+            }
             className="w-full p-2 border border-input rounded-md bg-background"
           >
             <option value="FRONTEND">Frontend</option>
@@ -157,9 +219,8 @@ export function CreateProjectForm({
             name="techStack"
             required
             placeholder="Next.js, Tailwind, PostgreSQL"
-            defaultValue={
-              projectToEdit?.techStack ? projectToEdit.techStack.join(", ") : ""
-            }
+            value={formState.techStack}
+            onChange={(e) => updateField("techStack", e.target.value)}
           />
         </m.div>
 
@@ -172,11 +233,11 @@ export function CreateProjectForm({
           )}
           <Input
             id="imageFile"
-
+            ref={imageInputRef}
             name="imageFile"
             type="file"
             accept="image/*"
-            required={!isEditing} // Solo es obligatorio si estamos creando
+            required={!isEditing}
             className="cursor-pointer file:text-primary"
             onChange={handleImageValidation}
           />
@@ -192,22 +253,22 @@ export function CreateProjectForm({
             <Label htmlFor="githubUrl">URL Repositorio</Label>
             <Input
               id="githubUrl"
-              // IMPORTANTE: camelCase
               name="githubUrl"
               type="url"
               placeholder="https://github.com/..."
-              defaultValue={projectToEdit?.githubUrl || ""}
+              value={formState.githubUrl}
+              onChange={(e) => updateField("githubUrl", e.target.value)}
             />
           </m.div>
           <m.div variants={FADE_UP_ITEM} className="space-y-2">
             <Label htmlFor="liveUrl">URL Demo</Label>
             <Input
               id="liveUrl"
-              // IMPORTANTE: camelCase
               name="liveUrl"
               type="url"
               placeholder="https://..."
-              defaultValue={projectToEdit?.liveUrl || ""}
+              value={formState.liveUrl}
+              onChange={(e) => updateField("liveUrl", e.target.value)}
             />
           </m.div>
         </div>

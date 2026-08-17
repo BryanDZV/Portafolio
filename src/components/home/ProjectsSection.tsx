@@ -47,6 +47,20 @@ function SectionEmptyState({ message }: { message: string }) {
 }
 
 function getProjectCategory(project: Project): ProjectCategory {
+  // Prioridad 1: usar la categoría guardada por el backend
+  const categoryMap: Record<string, ProjectCategory> = {
+    FRONTEND: "frontend",
+    BACKEND: "backend",
+    FULLSTACK: "fullStack",
+    FULL_STACK: "fullStack",
+  };
+
+  if (project.category) {
+    const mapped = categoryMap[project.category.toUpperCase()];
+    if (mapped) return mapped;
+  }
+
+  // Prioridad 2: fallback por tech stack (para proyectos antiguos sin categoría)
   const normalizedStack = project.techStack.map((tech) => tech.toLowerCase());
 
   const hasFrontend = normalizedStack.some((tech) =>
@@ -56,7 +70,9 @@ function getProjectCategory(project: Project): ProjectCategory {
   );
 
   const hasBackend = normalizedStack.some((tech) =>
-    /(node|express|postgres|mysql|mongo|mongodb|firebase)/.test(tech),
+    /(node|express|postgres|mysql|mongo|mongodb|firebase|spring|boot|java|python)/.test(
+      tech,
+    ),
   );
 
   if (hasFrontend && hasBackend) return "fullStack";

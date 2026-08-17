@@ -10,29 +10,20 @@ import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 
 import { logoutAction, deleteProjectAction } from "./actions";
-import { CreateProjectForm } from "@/components/projects/CreateProjectForm";
+import { ProjectEditor } from "@/components/projects/ProjectEditor";
 import { AnimatedFadeIn } from "@/components/ui/AnimatedFadeIn";
 import { requireAdminSession } from "@/lib/admin/auth";
 
 export default async function DashboardPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ lang: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { lang } = await params;
-  const search = await searchParams;
 
   await requireAdminSession({ strategy: "redirect-login", lang });
 
   const projects = await getProjects();
-
-  // 1. Miramos si en la URL hay un parámetro ?edit=ID
-  const editingId = search.edit as string;
-  const projectToEdit = editingId
-    ? projects.find((p) => p.id === editingId)
-    : null;
 
   return (
     <main className="min-h-screen p-8 bg-background">
@@ -69,20 +60,7 @@ export default async function DashboardPage({
         </AnimatedFadeIn>
 
         <AnimatedFadeIn delay={0.08}>
-          <section className="mb-12">
-            <div className="flex justify-between items-center mb-4">
-              {editingId && (
-                <Link
-                  href={`/${lang}/dashboard`}
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                >
-                  ← Nuevo Proyecto
-                </Link>
-              )}
-            </div>
-            {/* 2. Le pasamos el proyecto al formulario si estamos editando */}
-            <CreateProjectForm projectToEdit={projectToEdit} />
-          </section>
+          <ProjectEditor projects={projects} lang={lang} />
         </AnimatedFadeIn>
 
         <AnimatedFadeIn delay={0.14}>
@@ -132,7 +110,6 @@ export default async function DashboardPage({
                               : project.techStack}
                           </td>
                           <td className="p-4 text-right flex justify-end gap-4 items-center">
-                            {/* 3. BOTÓN DE EDITAR: Ahora es un Link que añade ?edit=ID a la URL */}
                             <Link
                               href={`/${lang}/dashboard?edit=${project.id}`}
                               className="text-xs uppercase text-cyan-500 font-bold hover:text-cyan-300 transition-colors"
