@@ -1,4 +1,3 @@
-
 import { HeroSection } from "@/components/home/HeroSection";
 import { ProjectsSection } from "@/components/home/ProjectsSection";
 import { SectionTransition } from "@/components/ui/SectionTransition";

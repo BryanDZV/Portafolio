@@ -1,4 +1,4 @@
-interface HeroDictionary {
+export interface HeroDictionary {
   badge: string;
   title1: string;
   title2: string;

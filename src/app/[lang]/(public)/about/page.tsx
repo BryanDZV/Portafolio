@@ -19,13 +19,13 @@ export default async function AboutPage({
     motto: dictionary.about.motto,
     headline: dictionary.about.headline,
     biographyTitle: dictionary.about.biographyTitle,
-    biography: dictionary.about.biography, 
+    biography: dictionary.about.biography,
     techStackTitle: dictionary.about.techStackTitle,
     mainStack: dictionary.about.mainStack,
     coreSkillsTitle: dictionary.about.coreSkillsTitle,
     coreSkills: dictionary.about.coreSkills,
     experienceTitle: dictionary.about.experienceTitle,
-    experiences: dictionary.about.experiences
+    experiences: dictionary.about.experiences,
   };
 
   return (

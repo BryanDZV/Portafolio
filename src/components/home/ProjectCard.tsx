@@ -6,12 +6,14 @@ import { m } from "framer-motion";
 import { Code2, ExternalLink, Terminal } from "lucide-react";
 import { use3DTilt } from "@/hooks/use3DTilt";
 import { IconBrandGithub } from "@tabler/icons-react";
-import { getTechIcon, ResolvedTechBadge, TechIconGlyph } from "@/lib/tech-icons";
-
+import {
+  getTechIcon,
+  ResolvedTechBadge,
+  TechIconGlyph,
+} from "@/lib/tech-icons";
 
 type ProjectCardProps = {
   title: string;
-  description: string;
   imageUrl?: string;
   techStack?: string[];
   liveUrl?: string | null;
@@ -29,9 +31,6 @@ const CARD_TITLE_CLASS =
   "flex items-center gap-2 text-2xl font-bold tracking-tight text-card-project-title md:text-3xl";
 
 const CARD_TITLE_ICON_CLASS = "h-5 w-5 text-primary md:h-6 md:w-6";
-
-const CARD_DESCRIPTION_CLASS =
-  "mt-2 line-clamp-3 text-base font-medium text-black/70 dark:text-white/80 md:mt-3 md:text-lg";
 
 const CARD_IMAGE_CLASS =
   "relative mt-4 aspect-[16/10] w-full shrink-0 overflow-hidden rounded-xl sm:aspect-[16/9] md:mt-5";
@@ -54,13 +53,12 @@ const CARD_DEMO_LINK_CLASS =
 
 export function ProjectCard({
   title,
-  description,
   imageUrl,
   techStack = [],
   liveUrl,
   githubUrl,
 }: ProjectCardProps) {
-  const { ref, rotateX, rotateY, onMouseMove, onMouseLeave } = use3DTilt();
+  const { ref, onMouseMove, onMouseLeave } = use3DTilt();
 
   const resolvedTechBadges: ResolvedTechBadge[] = useMemo(
     () =>
@@ -78,12 +76,6 @@ export function ProjectCard({
         ref={ref}
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
-        // style={{
-        //   rotateX,
-        //   rotateY,
-        //   transformStyle: "preserve-3d",
-        //   willChange: "transform",
-        // }}
         className={CARD_SURFACE_CLASS}
       >
         <div
@@ -93,22 +85,10 @@ export function ProjectCard({
           <h3 className={CARD_TITLE_CLASS}>
             <Terminal className={CARD_TITLE_ICON_CLASS} /> {title}
           </h3>
-          
         </div>
 
-        {/* ref={ref}
-        onMouseMove={onMouseMove}
-        onMouseLeave={onMouseLeave}
-        whileHover={{ scale: 1.02 }}
-        style={{
-          rotateX,
-          rotateY,
-          transformStyle: "preserve-3d",
-          willChange: "transform", */}
-
         <m.div
-         
-          whileHover={{ scale: 1.01, y: -15}}
+          whileHover={{ scale: 1.01, y: -15 }}
           transition={{ type: "spring", stiffness: 320 }}
           className={CARD_IMAGE_CLASS}
         >
@@ -128,13 +108,11 @@ export function ProjectCard({
             </div>
           )}
         </m.div>
-        {/* <div><p className={CARD_DESCRIPTION_CLASS}>{description}</p></div> */}
 
         <div
           style={{ transform: "translateZ(60px)" }}
           className={CARD_BADGES_CLASS}
         >
-          
           {resolvedTechBadges.map((badge) => (
             <span key={badge.key} className={CARD_BADGE_CLASS}>
               {badge.icon ? (
@@ -160,7 +138,7 @@ export function ProjectCard({
               target="_blank"
               rel="noopener noreferrer"
               data-cursor="pointer"
-              whileHover={{ scale: 1.30 }}
+              whileHover={{ scale: 1.3 }}
               whileTap={{ scale: 0.95 }}
               className={CARD_LINK_CLASS}
             >

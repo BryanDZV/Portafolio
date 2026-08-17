@@ -9,8 +9,7 @@
   },
   "about": {
     "title": "About Me",
-    "motto": 
-      "Every mistake is one step closer to the solution. If there are no mistakes, there is no learning.",
+    "motto": "Every mistake is one step closer to the solution. If there are no mistakes, there is no learning.",
     "headline": "Web Developer in Madrid, Spain.",
     "biographyTitle": "Hi, I'm Bryan Zavala",
     "biography": [
@@ -21,19 +20,51 @@
     "mainStack": [
       {
         "categoryName": "Frontend",
-        "technologies": ["Next.js", "React", "Angular", "Tailwind CSS", "TypeScript", "JavaScript", "HTML5", "CSS3"]
+        "technologies": [
+          "Next.js",
+          "React",
+          "Angular",
+          "Tailwind CSS",
+          "TypeScript",
+          "JavaScript",
+          "HTML5",
+          "CSS3"
+        ]
       },
       {
         "categoryName": "Backend",
-        "technologies": ["Node.js", "Express.js", "Spring Boot", "PostgreSQL", "MongoDB", "MySQL", "Java 21"]
+        "technologies": [
+          "Node.js",
+          "Express.js",
+          "Spring Boot",
+          "PostgreSQL",
+          "MongoDB",
+          "MySQL",
+          "Java 21"
+        ]
       },
       {
         "categoryName": "DevOps & Cloud",
-        "technologies": ["Git", "GitHub", "Docker", "CI/CD", "Netlify", "Vercel", "Linux", "Bash", "Apache"]
+        "technologies": [
+          "Git",
+          "GitHub",
+          "Docker",
+          "CI/CD",
+          "Netlify",
+          "Vercel",
+          "Linux",
+          "Bash",
+          "Apache"
+        ]
       },
       {
         "categoryName": "Software Architecture and Design",
-        "technologies": ["Clean Architecture", "MVC", "RESTful APIs", "Layered Architecture"]
+        "technologies": [
+          "Clean Architecture",
+          "MVC",
+          "RESTful APIs",
+          "Layered Architecture"
+        ]
       }
     ],
     "coreSkillsTitle": "Soft Skills",

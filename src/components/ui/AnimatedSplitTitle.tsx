@@ -6,7 +6,6 @@ import type { Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
 import type { AnimatedSplitTitleProps } from "@/types/AnimatedSplitTitleProps";
 
-
 export function AnimatedSplitTitle({
   as = "h2",
   line1,
@@ -155,4 +154,3 @@ function TitleContent({
     </>
   );
 }
-

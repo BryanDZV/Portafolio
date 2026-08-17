@@ -11,9 +11,7 @@ export function TechCarousel() {
   return (
     <section className="relative w-full overflow-hidden py-10">
       <m.div
-        animate={
-          shouldReduceMotion ? undefined : { x: ["0%", "-50%"] }
-        }
+        animate={shouldReduceMotion ? undefined : { x: ["0%", "-50%"] }}
         transition={{
           repeat: Infinity,
           duration: 50,

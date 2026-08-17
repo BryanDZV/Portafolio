@@ -9,32 +9,62 @@
   },
   "about": {
     "title": "Sobre Mí",
-    "motto": 
-      "Cada error es un paso más cerca de la solución. Si no hay errores, no hay aprendizaje.",
+    "motto": "Cada error es un paso más cerca de la solución. Si no hay errores, no hay aprendizaje.",
     "headline": "Desarrollador Web en Madrid, España.",
     "biographyTitle": "Hola, soy Bryan Zavala",
     "biography": [
       "Desarrollador Web Junior. Durante mi formación he aprendido a construir aplicaciones web desde cero utilizando tecnologías modernas.",
       "Soy consciente de que estoy al principio de mi carrera y que me queda mucho por aprender, pero me gusta buscar soluciones."
-      
     ],
     "techStackTitle": "Core Stack Tecnológico",
     "mainStack": [
       {
         "categoryName": "Frontend",
-        "technologies": ["Next.js", "React", "Angular", "Tailwind CSS", "TypeScript", "JavaScript", "HTML5", "CSS3"]
+        "technologies": [
+          "Next.js",
+          "React",
+          "Angular",
+          "Tailwind CSS",
+          "TypeScript",
+          "JavaScript",
+          "HTML5",
+          "CSS3"
+        ]
       },
       {
         "categoryName": "Backend ",
-        "technologies": ["Node.js", "Express.js", "Spring Boot", "PostgreSQL", "MongoDB", "MySQL", "Java 21"]
+        "technologies": [
+          "Node.js",
+          "Express.js",
+          "Spring Boot",
+          "PostgreSQL",
+          "MongoDB",
+          "MySQL",
+          "Java 21"
+        ]
       },
       {
         "categoryName": "DevOps & Cloud",
-        "technologies": ["Git", "GitHub", "Docker", "CI/CD", "Netlify", "Vercel", "Linux", "Bash", "Apache"]
+        "technologies": [
+          "Git",
+          "GitHub",
+          "Docker",
+          "CI/CD",
+          "Netlify",
+          "Vercel",
+          "Linux",
+          "Bash",
+          "Apache"
+        ]
       },
       {
         "categoryName": "Arquitectura y Diseño de Software",
-        "technologies": ["Clean Architecture", "MVC", "RESTful APIs","Arquitectura por Capas"]
+        "technologies": [
+          "Clean Architecture",
+          "MVC",
+          "RESTful APIs",
+          "Arquitectura por Capas"
+        ]
       }
     ],
     "coreSkillsTitle": "Habilidades Blandas",

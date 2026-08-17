@@ -7,16 +7,18 @@ import { SocialLinks } from "@/components/ui/SocialLinks";
 import { LottieAnimation } from "@/components/atoms/LottieAnimation";
 import contactAnimation from "@/assets/lotties/Contact.json";
 
-export default function ContactSection({ data, homeHref }: ContactSectionProps) {
+export default function ContactSection({
+  data,
+  homeHref,
+}: ContactSectionProps) {
   return (
-    
     <section
       id="contacto"
       className="mx-auto max-w-4xl rounded-3xl border border-border bg-card/60 backdrop-blur-md p-8 md:p-12 shadow-sm"
     >
-      <LottieAnimation 
-        animationData={contactAnimation} 
-        className="w-48 h-48 md:w-64 md:h-64 mb-4" 
+      <LottieAnimation
+        animationData={contactAnimation}
+        className="w-48 h-48 md:w-64 md:h-64 mb-4"
       />
       <h2 className="text-2xl font-bold">Contáctame</h2>
       {/* Indicador de Disponibilidad */}
@@ -33,14 +35,13 @@ export default function ContactSection({ data, homeHref }: ContactSectionProps) 
       <h1 className="text-4xl md:text-6xl font-black tracking-tight text-foreground mb-6">
         {data.pageTitle}
       </h1>
-      
+
       <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mb-10">
         {data.description}
       </p>
 
       {/* Grid de Información de Contacto */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-border pt-10">
-        
         {/* Columna Izquierda: Acción Principal (Email) y Ubicación */}
         <div className="space-y-6">
           <div>
@@ -65,9 +66,8 @@ export default function ContactSection({ data, homeHref }: ContactSectionProps) 
 
         {/* Columna Derecha: Redes Sociales y Volver */}
         <div className="space-y-6 flex flex-col md:items-end justify-between">
-          
           <div className="w-full md:w-auto">
-             <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3 md:text-right">
+            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3 md:text-right">
               Mis Redes
             </h3>
             <SocialLinks
@@ -87,7 +87,6 @@ export default function ContactSection({ data, homeHref }: ContactSectionProps) 
             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
             {data.backLink}
           </Link>
-          
         </div>
       </div>
     </section>

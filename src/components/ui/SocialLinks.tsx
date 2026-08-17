@@ -33,7 +33,7 @@ export function SocialLinks({
         aria-label={githubAriaLabel}
         className={cn(
           "hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded-sm",
-          iconLinkClassName
+          iconLinkClassName,
         )}
       >
         <IconBrandGithub size={26} />
@@ -45,7 +45,7 @@ export function SocialLinks({
         aria-label={linkedinAriaLabel}
         className={cn(
           "hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded-sm",
-          iconLinkClassName
+          iconLinkClassName,
         )}
       >
         <IconBrandLinkedin size={26} />

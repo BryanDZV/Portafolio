@@ -168,7 +168,6 @@ export function ProjectsSection({
                           <ProjectCard
                             key={project.id}
                             title={project.title}
-                            description={project.description}
                             imageUrl={project.imageUrl}
                             techStack={project.techStack}
                             liveUrl={project.liveUrl}

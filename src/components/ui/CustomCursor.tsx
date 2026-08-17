@@ -44,7 +44,7 @@ export function CustomCursor() {
   const coreVariants = {
     default: {
       scale: 1,
-      backgroundColor: "rgba(2, 255, 44, 0.9)", 
+      backgroundColor: "rgba(2, 255, 44, 0.9)",
       boxShadow: "0 0 15px rgba(120, 0, 255, 1)",
     },
     hover: {
