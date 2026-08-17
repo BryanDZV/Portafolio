@@ -1,21 +1,10 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { m, useInView, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
-
-interface AnimatedSplitTitleProps {
-  as?: "h1" | "h2";
-  line1: string;
-  line2?: string;
-  className?: string;
-  line1ClassName?: string;
-  line2ClassName?: string;
-  viewportAmount?: number;
-  loop?: boolean;
-  loopDelayMs?: number;
-}
+import type { AnimatedSplitTitleProps } from "@/types/AnimatedSplitTitleProps";
 
 export function AnimatedSplitTitle({
   as = "h2",
@@ -25,8 +14,6 @@ export function AnimatedSplitTitle({
   line1ClassName,
   line2ClassName,
   viewportAmount = 0.8,
-  loop = false,
-  loopDelayMs = 4500,
 }: AnimatedSplitTitleProps) {
   const shouldReduceMotion = useReducedMotion() ?? false;
   const MotionHeading = m[as];
@@ -93,27 +80,11 @@ export function AnimatedSplitTitle({
   // ==========================================
   // 2. Client Render (Animación)
   // ==========================================
-  // QUE HACE: Renderiza el componente interactivo bifurcando la lógica si requiere un loop infinito.
-  // POR QUE SE ELIGIO: Aísla el hack del `key` para el loop, permitiendo que los elementos normales o "sticky" usen el comportamiento nativo `whileInView` sin desaparecer de la pantalla.
-  return loop ? (
-    <LoopingTitle
-      MotionHeading={MotionHeading}
-      textContainerVariants={textContainerVariants}
-      letterVariants={letterVariants}
-      line1={line1}
-      line2={line2}
-      className={className}
-      line1ClassName={line1ClassName}
-      line2ClassName={line2ClassName}
-      loopDelayMs={loopDelayMs}
-      viewportAmount={viewportAmount}
-    />
-  ) : (
+  return (
     <MotionHeading
       ref={headingRef}
       variants={textContainerVariants}
       initial="hidden"
-      // whileInView garantiza que la animación se repita cada vez que entra en pantalla
       whileInView="visible"
       viewport={{ once: false, amount: viewportAmount }}
       className={cn("leading-relaxed", className)}
@@ -181,60 +152,5 @@ function TitleContent({
         </>
       )}
     </>
-  );
-}
-
-interface LoopingTitleProps extends TitleContentProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  MotionHeading: any;
-  textContainerVariants: Variants;
-  className?: string;
-  loopDelayMs: number;
-  viewportAmount: number;
-}
-
-function LoopingTitle({
-  MotionHeading,
-  textContainerVariants,
-  letterVariants,
-  line1,
-  line2,
-  className,
-  line1ClassName,
-  line2ClassName,
-  loopDelayMs,
-  viewportAmount,
-}: LoopingTitleProps) {
-  // QUE HACE: Gestiona el ciclo infinito de destrucción/creación del componente final (HABLEMOS).
-  // POR QUE SE ELIGIO: Al cambiar el React `key`, forzamos al motor interno a desmontar y volver a montar el componente, reiniciando la animación de cero sin fallos de estado.
-  const [cycle, setCycle] = useState(0);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { amount: viewportAmount });
-
-  useEffect(() => {
-    if (!isInView) return;
-    const interval = window.setInterval(() => {
-      setCycle((c) => c + 1);
-    }, loopDelayMs);
-    return () => window.clearInterval(interval);
-  }, [isInView, loopDelayMs]);
-
-  return (
-    <MotionHeading
-      ref={ref}
-      key={cycle}
-      variants={textContainerVariants}
-      initial="hidden"
-      animate="visible"
-      className={cn("leading-relaxed", className)}
-    >
-      <TitleContent
-        line1={line1}
-        line2={line2}
-        line1ClassName={line1ClassName}
-        line2ClassName={line2ClassName}
-        letterVariants={letterVariants}
-      />
-    </MotionHeading>
   );
 }

@@ -83,7 +83,7 @@ export function Navbar({ isLoggedIn = false }: NavbarProps) {
         <m.div whileHover={shouldReduceMotion ? undefined : { scale: 1.04 }}>
           {/* QUE HACE: Actualizamos los hrefs para respetar el idioma en las anclas */}
           <Link
-            href={`/${currentLang}/#about`}
+            href={`/${currentLang}/about`}
             aria-label="Ir a sección Sobre Mí"
             className="flex items-center gap-2 text-base font-medium text-muted-foreground hover:text-foreground transition-opacity outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
           >

@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useMotionValue, useSpring, useReducedMotion } from "framer-motion";
 
-// QUE HACE: Encapsula toda la lógica matemática, físicas y listeners del cursor personalizado.
 // POR QUE SE ELIGIO: Separar la lógica (físicas) de la vista (HTML) cumple con el Principio de Responsabilidad Única. Hace el componente visual más limpio y permite reutilizar este hook en el futuro.
 // COMO FUNCIONA: Gestiona estados internos y expone un objeto solo con las coordenadas finales calculadas por los 'springs' para que la interfaz las consuma.
 // APRENDE MAS: https://react.dev/learn/reusing-logic-with-custom-hooks

@@ -56,7 +56,7 @@
 
 :root {
   /* MANTENEMOS TUS COLORES OKLCH ORIGINALES */
-  --background: oklch(0.97 0.01 250);
+  --background: oklch(97.913% 0.00011 271.152);
   --foreground: oklch(0.18 0.02 300);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.2 0.02 300);

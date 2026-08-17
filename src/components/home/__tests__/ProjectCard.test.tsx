@@ -52,10 +52,9 @@ describe("ProjectCard", () => {
   });
 
   it("renders project content and action links", () => {
-    render(
+    const { container } = render(
       <ProjectCard
         title="Portfolio App"
-        description="Aplicación para mostrar proyectos y contacto."
         imageUrl="/images/project.jpg"
         techStack={["React", "Next.js", "Tailwind"]}
         liveUrl="https://demo.example.com"
@@ -64,10 +63,10 @@ describe("ProjectCard", () => {
     );
 
     expect(
-      screen.getByRole("heading", { name: /portfolio app/i }),
-    ).toBeInTheDocument();
+      container.querySelector("div[style*='translateX(80px)']"),
+    ).not.toBeInTheDocument();
     expect(
-      screen.getByText(/aplicación para mostrar proyectos y contacto/i),
+      screen.getByRole("heading", { name: /portfolio app/i }),
     ).toBeInTheDocument();
     expect(screen.getByAltText("Portfolio App")).toBeInTheDocument();
     expect(screen.getByText("React")).toBeInTheDocument();
@@ -84,13 +83,7 @@ describe("ProjectCard", () => {
   });
 
   it("renders the image fallback and hides optional links when urls are missing", () => {
-    render(
-      <ProjectCard
-        title="Minimal Card"
-        description="Solo datos básicos."
-        techStack={[]}
-      />,
-    );
+    render(<ProjectCard title="Minimal Card" techStack={[]} />);
 
     expect(screen.getByText("Sin imagen")).toBeInTheDocument();
     expect(
