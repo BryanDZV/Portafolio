@@ -128,7 +128,7 @@ export function ProjectsSection({
             line1={dictionary.title1}
             line2={dictionary.title2}
             viewportAmount={0.35}
-            className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter italic text-projects-heading drop-shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+            className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter italic text-foreground drop-shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
             line2ClassName="text-not-italic"
           />
           <m.p
@@ -154,7 +154,7 @@ export function ProjectsSection({
                   <section key={section.key} className="pointer-events-auto">
                     <div className={SECTION_HEADER_CLASS}>
                       <div>
-                        <h3 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight text-projects-heading drop-shadow-[0_8px_22px_rgba(0,0,0,0.28)] uppercase">
+                        <h3 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight text-foreground drop-shadow-[0_8px_22px_rgba(0,0,0,0.28)] uppercase">
                           {section.title}
                         </h3>
                       </div>
@@ -204,16 +204,14 @@ function FinalCTA({
       <AnimatedSplitTitle
         as="h2"
         line1={dictionary.cta}
-        loop={true}
-        loopDelayMs={1000}
-        viewportAmount={0.01}
-        className="text-[18vw] md:text-9xl lg:text-[10rem] font-black tracking-tighter text-projects-heading mb-6 whitespace-nowrap uppercase"
-        line1ClassName="text-projects-heading"
+        viewportAmount={0.1}
+        className="text-[18vw] md:text-9xl lg:text-[10rem] font-black tracking-tighter text-foreground mb-6 whitespace-nowrap uppercase"
+        line1ClassName="text-foreground"
       />
 
-      <p className="mt-6 text-xl md:text-2xl font-extrabold text-projects-subtitle max-w-2xl px-4 whitespace-normal">
+      {/* <p className="mt-6 text-xl md:text-2xl font-extrabold text-projects-subtitle max-w-2xl px-4 whitespace-normal">
         {dictionary.cta_subtitle}
-      </p>
+      </p> */}
 
       <Link href={`/${lang}/contacto`} className="mt-12 focus:outline-none">
         <m.button
@@ -232,7 +230,7 @@ function FinalCTA({
             damping: 17,
             ease: STANDARD_EASE,
           }}
-          className="flex items-center gap-3 rounded-2xl bg-primary px-10 py-5 text-xl font-medium text-white shadow-xl outline-none"
+          className="flex items-center gap-3 rounded-2xl bg-primary px-10 py-5 -xl font-medium text-white shadow-xl outline-none"
         >
           <Send className="w-6 h-6" />
           {dictionary.cta_button}

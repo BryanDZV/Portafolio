@@ -21,7 +21,7 @@ const CARD_PERSPECTIVE_CLASS =
   "w-full h-full flex justify-center pointer-events-auto [perspective:1200px]";
 
 const CARD_SURFACE_CLASS =
-  "relative flex h-full w-full flex-col overflow-hidden rounded-xl border border-black/[0.1] bg-white/90 p-4 shadow-2xl transition-colors duration-300 dark:border-border dark:bg-card/60 sm:p-5 md:p-6 lg:p-7";
+  "relative flex h-full w-full flex-col overflow-hidden rounded-xl border border-black/[0.1] bg-white/0 p-4 shadow-2xl transition-colors duration-300 dark:border-border dark:bg-card/0  sm:p-5 md:p-6 lg:p-7";
 
 const CARD_HEADER_CLASS = "shrink-0";
 
@@ -41,7 +41,7 @@ const CARD_BADGES_CLASS = "mt-4 flex shrink-0 flex-wrap gap-2";
 const CARD_BADGE_CLASS =
   "inline-flex items-center gap-1 rounded-md border border-primary/20 bg-primary/10 px-2 py-1 text-[10px] font-bold font-mono text-primary shadow-sm dark:border-white/10 dark:bg-black/40 dark:text-white sm:gap-1.5 sm:px-2.5 sm:py-1.5 sm:text-[11px]";
 
-const CARD_BADGE_ICON_CLASS = "h-3 w-3 sm:h-3.5 sm:w-3.5";
+const CARD_BADGE_ICON_CLASS = "h-3 w-3 sm:h-4.5 sm:w-5.5";
 
 const CARD_ACTIONS_CLASS =
   "mt-4 flex shrink-0 items-center justify-between border-t border-border pt-4";
@@ -50,7 +50,7 @@ const CARD_LINK_CLASS =
   "group flex items-center gap-2 text-sm font-mono text-black underline decoration-transparent underline-offset-4 transition-all hover:text-cyan-500 dark:text-white dark:hover:text-cyan-400 md:gap-2.5 md:text-base";
 
 const CARD_DEMO_LINK_CLASS =
-  "group flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-bold font-mono text-white shadow-lg transition-all hover:bg-primary/90 md:gap-2.5 md:text-base";
+  "group flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-bold font-mono text-white shadow-lg transition-all hover:bg-primary/90 md:gap-2.5 md:text-base hover:text-cyan-500";
 
 export function ProjectCard({
   title,
@@ -78,13 +78,12 @@ export function ProjectCard({
         ref={ref}
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
-        whileHover={{ scale: 1.02 }}
-        style={{
-          rotateX,
-          rotateY,
-          transformStyle: "preserve-3d",
-          willChange: "transform",
-        }}
+        // style={{
+        //   rotateX,
+        //   rotateY,
+        //   transformStyle: "preserve-3d",
+        //   willChange: "transform",
+        // }}
         className={CARD_SURFACE_CLASS}
       >
         <div
@@ -94,7 +93,7 @@ export function ProjectCard({
           <h3 className={CARD_TITLE_CLASS}>
             <Terminal className={CARD_TITLE_ICON_CLASS} /> {title}
           </h3>
-          <p className={CARD_DESCRIPTION_CLASS}>{description}</p>
+          
         </div>
 
         {/* ref={ref}
@@ -108,9 +107,9 @@ export function ProjectCard({
           willChange: "transform", */}
 
         <m.div
-          style={{ transform: "translateX(80px)" }}
-          whileHover={{ scale: 1.03, y: -7 }}
-          transition={{ type: "spring", stiffness: 320, damping: 50 }}
+         
+          whileHover={{ scale: 1.01, y: -15}}
+          transition={{ type: "spring", stiffness: 320 }}
           className={CARD_IMAGE_CLASS}
         >
           {imageUrl ? (
@@ -129,11 +128,13 @@ export function ProjectCard({
             </div>
           )}
         </m.div>
+        {/* <div><p className={CARD_DESCRIPTION_CLASS}>{description}</p></div> */}
 
         <div
           style={{ transform: "translateZ(60px)" }}
           className={CARD_BADGES_CLASS}
         >
+          
           {resolvedTechBadges.map((badge) => (
             <span key={badge.key} className={CARD_BADGE_CLASS}>
               {badge.icon ? (
@@ -159,7 +160,7 @@ export function ProjectCard({
               target="_blank"
               rel="noopener noreferrer"
               data-cursor="pointer"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.30 }}
               whileTap={{ scale: 0.95 }}
               className={CARD_LINK_CLASS}
             >
@@ -175,7 +176,7 @@ export function ProjectCard({
               target="_blank"
               rel="noopener noreferrer"
               data-cursor="pointer"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.35 }}
               whileTap={{ scale: 0.95 }}
               className={CARD_DEMO_LINK_CLASS}
             >

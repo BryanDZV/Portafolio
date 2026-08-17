@@ -52,7 +52,7 @@ describe("ProjectCard", () => {
   });
 
   it("renders project content and action links", () => {
-    render(
+    const { container } = render(
       <ProjectCard
         title="Portfolio App"
         description="Aplicación para mostrar proyectos y contacto."
@@ -63,6 +63,9 @@ describe("ProjectCard", () => {
       />,
     );
 
+    expect(
+      container.querySelector("div[style*='translateX(80px)']"),
+    ).not.toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: /portfolio app/i }),
     ).toBeInTheDocument();
