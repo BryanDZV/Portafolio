@@ -1,4 +1,4 @@
-import { AboutSection } from "@/components/home/AboutSection";
+
 import { HeroSection } from "@/components/home/HeroSection";
 import { ProjectsSection } from "@/components/home/ProjectsSection";
 import { SectionTransition } from "@/components/ui/SectionTransition";
@@ -35,9 +35,9 @@ export default async function Home({
         />
       </SectionTransition>
 
-      <SectionTransition delay={0.17} className="mt-16 md:mt-24">
+      {/* <SectionTransition delay={0.17} className="mt-16 md:mt-24">
         <AboutSection dictionary={dictionary.about} />
-      </SectionTransition>
+      </SectionTransition> */}
     </main>
   );
 }
