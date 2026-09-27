@@ -1,8 +1,7 @@
 import { HeroSection } from "@/components/home/HeroSection";
-import { ProjectsSection } from "@/components/home/ProjectsSection";
+import { HomeProjectsLoader } from "@/components/home/HomeProjectsLoader";
 import { SectionTransition } from "@/components/ui/SectionTransition";
 import { getDictionary } from "@/app/dictionaries/getDictionary";
-import { getProjects } from "@/lib/queries";
 import { TechCarousel } from "@/components/ui/TechCarousel";
 
 export default async function Home({
@@ -18,21 +17,13 @@ export default async function Home({
   // POR QUE SE ELIGIO: Centraliza i18n en una sola fuente de verdad y aprovecha el fallback a español definido en getDictionary.
   const dictionary = await getDictionary(lang);
 
-  // PETICIÓN AL SERVIDOR
-  const myProjects = await getProjects();
-
   return (
     <main className="relative">
       <SectionTransition>
         <HeroSection dictionary={dictionary.hero} />
       </SectionTransition>
       <TechCarousel />
-      <SectionTransition delay={0.8}>
-        <ProjectsSection
-          projects={myProjects}
-          dictionary={dictionary.projects}
-        />
-      </SectionTransition>
+      <HomeProjectsLoader dictionary={dictionary.projects} />
 
       {/* <SectionTransition delay={0.17} className="mt-16 md:mt-24">
         <AboutSection dictionary={dictionary.about} />

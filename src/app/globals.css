@@ -170,4 +170,17 @@
   .animation-delay-200 {
     animation-delay: 200ms;
   }
+
+  @keyframes cold-start-indeterminate {
+    0% {
+      transform: translateX(-120%);
+    }
+    100% {
+      transform: translateX(320%);
+    }
+  }
+
+  .animate-cold-start-bar {
+    animation: cold-start-indeterminate 1.4s ease-in-out infinite;
+  }
 }
