@@ -49,7 +49,9 @@ export function ColdStartLoader({
         <div className="h-full w-1/3 rounded-full bg-primary motion-safe:animate-cold-start-bar motion-reduce:w-full" />
       </div>
 
-      <span className="sr-only">{title}. {description}</span>
+      <span className="sr-only">
+        {title}. {description}
+      </span>
     </div>
   );
 }
