@@ -39,7 +39,7 @@ export default async function DashboardPage({
               </p>
             </div>
 
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-7">
               <Link
                 href={`/${lang}`}
                 className="flex items-center gap-2 text-sm font-medium text-cyan-400 hover:text-cyan-300 uppercase tracking-wider transition-colors"
