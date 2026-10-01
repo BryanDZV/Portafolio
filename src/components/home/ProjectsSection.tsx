@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { m, useInView, useReducedMotion } from "framer-motion";
@@ -8,7 +8,7 @@ import { ProjectCard } from "./ProjectCard";
 import { AnimatedSplitTitle } from "@/components/ui/AnimatedSplitTitle";
 import { getInViewReveal, STANDARD_EASE } from "@/components/ui/motion-presets";
 import type { Project } from "@/types/Project";
-import { Send } from "lucide-react";
+import { ArrowDownUp, Send } from "lucide-react";
 
 // QUE HACE: Define la estructura estricta del JSON que esperamos recibir del servidor para esta sección.
 interface ProjectsDictionary {
@@ -18,6 +18,7 @@ interface ProjectsDictionary {
   frontend: string;
   backend: string;
   fullStack: string;
+  orderButton: string;
   cta: string;
   cta_subtitle: string;
   cta_button: string;
@@ -108,7 +109,7 @@ export function ProjectsSection({
   const shouldReduceMotion = useReducedMotion() ?? false;
   const targetRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(targetRef, { amount: 0.05 });
-
+  const [fullStackFirst, setFullStackFirst] = useState(false);
   const headingReveal = getInViewReveal({
     shouldReduceMotion,
     duration: 0.5,
@@ -121,6 +122,9 @@ export function ProjectsSection({
     { key: "backend", title: dictionary.backend },
     { key: "fullStack", title: dictionary.fullStack },
   ];
+  const orderedSections = fullStackFirst
+    ? [...sections.slice(2), ...sections.slice(0, 2)]
+    : sections;
 
   return (
     <section
@@ -163,7 +167,18 @@ export function ProjectsSection({
             <SectionEmptyState message="Esperando datos..." />
           ) : (
             <>
-              {sections.map((section) => {
+              <div className="pointer-events-auto mb-8 flex justify-end px-[10vw]">
+                <button
+                  type="button"
+                  onClick={() => setFullStackFirst((current) => !current)}
+                  aria-pressed={fullStackFirst}
+                  className="group inline-flex cursor-pointer items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 font-medium text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:border-primary hover:bg-primary/10 hover:text-primary active:translate-y-0 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  <ArrowDownUp className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180" />
+                  {dictionary.orderButton}
+                </button>
+              </div>
+              {orderedSections.map((section) => {
                 const sectionProjects = groupedProjects[section.key];
 
                 return (

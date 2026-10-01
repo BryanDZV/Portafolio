@@ -99,6 +99,7 @@
     "frontend": "Frontend",
     "backend": "Backend",
     "fullStack": "Full Stack",
+    "orderButton": "Show Full Stack first",
     "cta": "LET'S TALK.",
     "cta_subtitle": "Have an idea in mind? Discover how we can build your next big project.",
     "cta_button": "Start Project"
