@@ -7,8 +7,22 @@ import { useMotionValue, useSpring, useReducedMotion } from "framer-motion";
 export function useMouseTrail() {
   const shouldReduceMotion = useReducedMotion() ?? false;
   const [isVisible, setIsVisible] = useState(false);
+  const [hasFinePointer, setHasFinePointer] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const isVisibleRef = useRef(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const updateFinePointer = () => {
+      setHasFinePointer(mediaQuery.matches);
+    };
+
+    updateFinePointer();
+    mediaQuery.addEventListener("change", updateFinePointer);
+    return () => {
+      mediaQuery.removeEventListener("change", updateFinePointer);
+    };
+  }, []);
 
   // QUE HACE: Crea fuentes de verdad para la posición del puntero fuera del ciclo de render de React.
   // POR QUE SE ELIGIO: useMotionValue evita re-renderizados constantes por cada pixel que se mueve el ratón, salvando el rendimiento de la CPU.
@@ -46,7 +60,7 @@ export function useMouseTrail() {
     // QUE HACE: Sincroniza una marca global en el HTML para ocultar el cursor nativo de Windows/Mac.
     // POR QUE SE ELIGIO: Evitamos ocultar el cursor original si el componente falla o si el usuario prefiere "movimiento reducido".
     const rootElement = document.documentElement;
-    const isCursorEnabled = !shouldReduceMotion && isReady;
+    const isCursorEnabled = hasFinePointer && !shouldReduceMotion && isReady;
 
     if (isCursorEnabled) {
       rootElement.classList.add("custom-cursor-enabled");
@@ -54,7 +68,7 @@ export function useMouseTrail() {
       rootElement.classList.remove("custom-cursor-enabled");
     }
     return () => rootElement.classList.remove("custom-cursor-enabled");
-  }, [isReady, shouldReduceMotion]);
+  }, [isReady, shouldReduceMotion, hasFinePointer]);
 
   useEffect(() => {
     // QUE HACE: Retrasa la activación matemática del cursor hasta que la web ha terminado de cargar lo importante.
@@ -100,7 +114,7 @@ export function useMouseTrail() {
   useEffect(() => {
     // QUE HACE: Escucha los movimientos reales del hardware (ratón) del usuario.
     // POR QUE SE ELIGIO: Se registran eventos nativos del navegador por eficiencia, y solo se actualiza React cuando el cursor entra o sale de la ventana.
-    if (shouldReduceMotion || !isReady) return;
+    if (shouldReduceMotion || !isReady || !hasFinePointer) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
@@ -128,12 +142,13 @@ export function useMouseTrail() {
         handleMouseLeave,
       );
     };
-  }, [isReady, mouseX, mouseY, shouldReduceMotion]);
+  }, [isReady, mouseX, mouseY, shouldReduceMotion, hasFinePointer]);
 
   // Retornamos el objeto limpio para que el componente visual lo lea.
   return {
     isReady,
     isVisible,
+    hasFinePointer,
     shouldReduceMotion,
     spotlight: { x: spotlightX, y: spotlightY },
     trail1: { x: trail1X, y: trail1Y },

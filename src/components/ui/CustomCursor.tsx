@@ -9,6 +9,7 @@ export function CustomCursor() {
   const {
     isReady,
     isVisible,
+    hasFinePointer,
     shouldReduceMotion,
     spotlight,
     trail1,
@@ -38,7 +39,7 @@ export function CustomCursor() {
     return () => window.removeEventListener("mouseover", handleMouseOver);
   }, []);
 
-  if (shouldReduceMotion || !isReady) return null;
+  if (!hasFinePointer || shouldReduceMotion || !isReady) return null;
 
   // Morado siempre (default), Azul/Cyan en clicables (hover)
   const coreVariants = {

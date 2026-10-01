@@ -6,6 +6,7 @@ export interface ProjectsDictionary {
   frontend: string;
   backend: string;
   fullStack: string;
+  orderButton: string;
   cta: string;
   cta_subtitle: string;
   cta_button: string;

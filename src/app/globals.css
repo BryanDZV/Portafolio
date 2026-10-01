@@ -130,7 +130,6 @@
   html {
     scroll-behavior: smooth;
     position: relative;
-    cursor: none;
     font-size: var(--font-size-base);
   }
 
