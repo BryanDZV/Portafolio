@@ -17,9 +17,40 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
-  title: "Immersive Portfolio",
-  description: "Portafolio immersivo 2026",
+  metadataBase: new URL(siteUrl),
+
+  title: {
+    default: "Bryan Zavala | Desarrollador Full Stack",
+    template: "%s | Bryan Zavala",
+  },
+
+  description:
+    "Portafolio de Bryan Zavala, desarrollador Full Stack especializado en aplicaciones web modernas.",
+
+  openGraph: {
+    type: "website",
+    title: "Bryan Zavala | Desarrollador Full Stack",
+    description: "Descubre el portafolio y los proyectos web de Bryan Zavala.",
+    siteName: "Bryan Zavala Portfolio",
+    images: [
+      {
+        url: "/avatar-og.png",
+        width: 1200,
+        height: 630,
+        alt: "Bryan Zavala - Desarrollador Full Stack",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Bryan Zavala | Desarrollador Full Stack",
+    description: "Descubre el portafolio y los proyectos web de Bryan Zavala.",
+    images: ["/avatar-og.png"],
+  },
 };
 //Hace asíncrono el layout para poder leer los params dinámicos (idioma) y cargar el diccionario correspondiente antes de renderizar.
 export default async function RootLayout({
