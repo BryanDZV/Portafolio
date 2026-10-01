@@ -6,13 +6,10 @@ module.exports = {
     collect: {
       // Concepto: startServerCommand.
       // Problema y como funciona: Levanta el servidor de Next.js para medir la app real.
-      // Aquí usamos un comando de shell que, de forma explícita y reproducible,
-      // libera el puerto 3000 si está ocupado y luego inicia el servidor.
-      // Esto es una práctica aceptada cuando se ejecuta en runners compartidos
-      // o entornos locales automatizados. La cadena se ejecuta en shell.
+      // Usamos el comando de Next.js directamente para que funcione en Windows
+      // y en los runners Linux de GitHub Actions.
       // Documentacion: https://github.com/GoogleChrome/lighthouse-ci/blob/main/docs/configuration.md#collectstartservercommand
-      startServerCommand:
-        "bash -lc 'pids=$(lsof -t -i :3000 2>/dev/null || true) && if [ -n \"$pids\" ]; then kill $pids || true; fi && npm run start -- --port=3000'",
+      startServerCommand: "npm run start -- --port=3000",
 
       // Concepto: startServerReadyPattern.
       // Problema y como funciona: Espera un mensaje del servidor antes de iniciar mediciones.
